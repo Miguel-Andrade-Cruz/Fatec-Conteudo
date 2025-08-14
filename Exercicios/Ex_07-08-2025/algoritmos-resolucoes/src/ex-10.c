@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 
+
 int main() {
-    int is_multiples;
+    
     int number_one, number_two;
     
     printf("digite o primeiro número: \n");
@@ -12,15 +13,9 @@ int main() {
     scanf("%d", &number_two);
     
     if (number_one >= number_two) {
-        is_multiples = number_one % number_two == 0;
+        printf("O maior número entre os dois é %d", number_one);
     } else {
-        is_multiples = number_two % number_one == 0;
-    }
-    
-    if (is_multiples == 1) {
-        printf("são múltiplos");
-    } else {
-        printf("não são múltiplos");
+        printf("O maior número entre os dois é %d", number_two);
     }
     
     return 0;

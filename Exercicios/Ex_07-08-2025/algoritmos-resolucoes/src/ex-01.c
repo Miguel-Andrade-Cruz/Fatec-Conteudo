@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 int main() {
-    
+
+    // Receba via teclado um número qualquer e exiba o seu sucessor e seu antecessor
+
     int number_choosed;
     int antecessor;
     int sucessor;

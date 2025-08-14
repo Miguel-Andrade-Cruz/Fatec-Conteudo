@@ -3,6 +3,8 @@
 
 int main() {
     
+    // Solicite ao usuário o preço de um produto e calcular novo preço com desconto de 9%
+    
     const float discount = 0.9; 
     float price;
     float discounted_price;

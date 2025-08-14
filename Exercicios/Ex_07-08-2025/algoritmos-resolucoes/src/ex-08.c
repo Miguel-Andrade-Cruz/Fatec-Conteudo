@@ -24,6 +24,15 @@ float get_validated_grade() {
 }
 
 int main() {
+    
+    // Calcule a média aritmética das quatro notas de
+    // um aluno e mostre, além do valor da média, uma
+    // mensagem de "Aprovado", caso a média seja igual
+    // ou superior a 6, ou a mensagem "reprovado",
+    // caso contrário.
+    // As notas devem ter valores maiores ou iguais a
+    // zero e menores ou iguais a 10
+    
     int is_approved;
     
     float grades[4];

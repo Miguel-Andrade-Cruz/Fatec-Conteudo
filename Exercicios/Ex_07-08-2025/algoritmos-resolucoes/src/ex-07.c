@@ -2,6 +2,9 @@
 
 int main() {
     
+    // Receba via teclado um número qualquer e
+    // exiba se ele é positivo ou negativo ou zero
+    
     int number;
     
     printf("Digite um número:");

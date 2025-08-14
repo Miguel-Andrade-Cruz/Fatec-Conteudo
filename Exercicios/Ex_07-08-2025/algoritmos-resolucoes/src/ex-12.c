@@ -1,8 +1,14 @@
 #include <stdio.h>
 
 
+int is_even(int number){
+    
+    return number % 2 == 0;
+}
+
 int main() {
-    int number_one, number_two, bigger;
+    
+    int number_one, number_two;
     
     printf("Escolha um número: \n");
     scanf("%d", &number_one);
@@ -10,11 +16,10 @@ int main() {
     printf("Escolha um outro número: \n");
     scanf("%d", &number_two);
     
-    if (number_one == number_two) {
-        printf("Os números são iguais");
+    if (is_even(number_one) && is_even(number_two)) {
+        printf("São pares");
     } else {
-        bigger = (number_one > number_two) ? number_one : number_two;
-        printf("O maior número é %d", bigger);
+        printf("São ímpares");
     }
     
     return 0;
