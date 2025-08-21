@@ -91,7 +91,7 @@ int main() {
     
     float amount = total_hours * value_hour_per_class;
     
-    printf("Seu total de horas/aula é de R$ %f \n", amount);
+    printf("Seu total de horas/aula é de R$ %.2f \n", amount);
     
     return 0;
 }
