@@ -75,7 +75,6 @@ int main() {
     
     in_between_monad* between_0_10 = create_in_between_monad(0.0, 10.0);
     
-    
     get_float_inputs(grades, size, msgs, between_0_10);
     
     float sum = 0.0;
@@ -89,9 +88,10 @@ int main() {
     if ( mean >= 6.0) {
         printf("Você foi aprovado\n");
     } else {
-        printf("Você foi reporvado\n");
+        printf("Você foi reprovado\n");
     }
     
-    
+   
+   free(between_0_10); 
     return 0;
 }
