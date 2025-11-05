@@ -54,17 +54,16 @@ int takeint(Inputer *ipt) {
 
 
 int checklist(Inputer *ipt_sketch, Needs *checker) {
-    int passed_check;
+    int passed_check = 0;
     Validator *current_checker;
     
     for (int i = 0; i < checker->qtd; i++) {
         current_checker = checker->arr[i];
-        passed_check = current_checker->action(ipt_sketch->value, current_checker->state);
-        if (passed_check == 0) {
-            return 0;
-        }
+        passed_check += current_checker->action(ipt_sketch->value, current_checker->state);
     }
-    
+    if (passed_check < checker->qtd) {
+        return 0;
+    }
     return 1;
 }
 
