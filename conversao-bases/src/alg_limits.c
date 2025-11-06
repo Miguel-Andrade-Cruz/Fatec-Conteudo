@@ -18,3 +18,4 @@ ALG_LIMIT get_alg_limit(int base) {
     
     return alg_limit;
 }
+
