@@ -1,0 +1,343 @@
+#define exc5
+
+#ifdef exc1
+
+int traffic_green_1 = 10;
+int traffic_yellow_1 = 9;
+int traffic_red_1 = 8;
+
+int traffic_green_2 = 7;
+int traffic_yellow_2 = 6;
+int traffic_red_2 = 5;
+
+void setup()
+{
+  
+  pinMode(traffic_green_1, OUTPUT);
+  pinMode(traffic_yellow_1, OUTPUT);
+  pinMode(traffic_red_1, OUTPUT);
+  
+  pinMode(traffic_green_2, OUTPUT);
+  pinMode(traffic_yellow_2, OUTPUT);
+  pinMode(traffic_red_2, OUTPUT);
+}
+
+void loop()
+{
+
+  digitalWrite(traffic_green_1, HIGH);
+  digitalWrite(traffic_green_2, HIGH);
+  delay(1000);
+  digitalWrite(traffic_green_1, LOW);
+  digitalWrite(traffic_green_2, LOW);
+  
+  digitalWrite(traffic_yellow_1, HIGH);
+  digitalWrite(traffic_yellow_2, HIGH);
+  delay(1000);
+  digitalWrite(traffic_yellow_1, LOW);
+  digitalWrite(traffic_yellow_2, LOW);
+  
+  digitalWrite(traffic_red_1, HIGH);
+  digitalWrite(traffic_red_2, HIGH);
+  delay(1000);
+  digitalWrite(traffic_red_1, LOW);
+  digitalWrite(traffic_red_2, LOW);
+}
+
+#endif
+
+// -------------------------------------------------------
+
+#ifdef exc2
+
+int traffic_green_1 = 10;
+int traffic_yellow_1 = 9;
+int traffic_red_1 = 8;
+
+int traffic_green_2 = 7;
+int traffic_yellow_2 = 6;
+int traffic_red_2 = 5;
+
+void setup()
+{
+
+  pinMode(traffic_green_1, OUTPUT);
+  pinMode(traffic_yellow_1, OUTPUT);
+  pinMode(traffic_red_1, OUTPUT);
+  
+  pinMode(traffic_green_2, OUTPUT);
+  pinMode(traffic_yellow_2, OUTPUT);
+  pinMode(traffic_red_2, OUTPUT);
+}
+
+
+
+void loop()
+{
+  
+  digitalWrite(traffic_green_1, HIGH);
+  digitalWrite(traffic_red_2, HIGH);
+  delay(3000);
+  
+  digitalWrite(traffic_green_1, LOW);
+  digitalWrite(traffic_yellow_1, HIGH);
+  delay(2000);
+  
+  digitalWrite(traffic_yellow_1, LOW);
+  digitalWrite(traffic_red_1, HIGH);
+  digitalWrite(traffic_red_2, LOW);
+  digitalWrite(traffic_green_2, HIGH);
+  delay(3000);
+  
+  digitalWrite(traffic_green_2, LOW);
+  digitalWrite(traffic_yellow_2, HIGH);
+  delay(2000);
+  
+  digitalWrite(traffic_yellow_2, LOW);
+  digitalWrite(traffic_red_1, LOW);
+  
+}
+
+#endif
+
+// -------------------------------------------------------
+
+#ifdef exc3
+
+int traffic_green_1 = 10;
+int traffic_yellow_1 = 9;
+int traffic_red_1 = 8;
+
+int traffic_green_2 = 7;
+int traffic_yellow_2 = 6;
+int traffic_red_2 = 5;
+
+void setup()
+{
+
+  pinMode(traffic_green_1, OUTPUT);
+  pinMode(traffic_yellow_1, OUTPUT);
+  pinMode(traffic_red_1, OUTPUT);
+  
+  pinMode(traffic_green_2, OUTPUT);
+  pinMode(traffic_yellow_2, OUTPUT);
+  pinMode(traffic_red_2, OUTPUT);
+}
+
+
+
+void loop()
+{
+  
+  digitalWrite(traffic_yellow_2, LOW);
+  digitalWrite(traffic_green_1, HIGH);
+  digitalWrite(traffic_red_1, LOW);
+  digitalWrite(traffic_red_2, HIGH);
+  delay(4000);
+  
+  digitalWrite(traffic_green_1, LOW);
+  digitalWrite(traffic_yellow_1, HIGH);
+  delay(1000);
+  
+  digitalWrite(traffic_yellow_1, LOW);
+  digitalWrite(traffic_red_1, HIGH);
+  digitalWrite(traffic_red_2, LOW);
+  digitalWrite(traffic_green_2, HIGH);
+  delay(2000);
+  
+  digitalWrite(traffic_green_2, LOW);
+  digitalWrite(traffic_yellow_2, HIGH);
+  delay(1000);
+  
+  
+}
+
+#endif
+
+// -------------------------------------------------------
+
+
+#ifdef exc4
+
+int traffic_state = 0;
+
+int traffic_request_button = 12;
+
+int traffic_green_1 = 10;
+int traffic_yellow_1 = 9;
+int traffic_red_1 = 8;
+
+int traffic_green_2 = 7;
+int traffic_yellow_2 = 6;
+int traffic_red_2 = 5;
+
+
+void horizontalGo(){
+
+  digitalWrite(traffic_yellow_2, LOW);
+  digitalWrite(traffic_green_1, HIGH);
+  digitalWrite(traffic_red_1, LOW);
+  digitalWrite(traffic_red_2, HIGH);
+}
+
+void horizontalTransition(){
+
+  digitalWrite(traffic_green_1, LOW);
+  digitalWrite(traffic_red_1, HIGH);
+  delay(500);
+  digitalWrite(traffic_red_1, LOW);
+  delay(500);
+  digitalWrite(traffic_red_1, HIGH);
+  delay(500);
+  digitalWrite(traffic_red_1, LOW);
+  delay(500);
+}
+
+
+void verticalGo(){
+
+  digitalWrite(traffic_red_1, HIGH);
+  digitalWrite(traffic_red_2, LOW);
+  digitalWrite(traffic_green_2, HIGH);
+}
+
+void verticalTransition(){
+
+  digitalWrite(traffic_green_2, LOW);
+  digitalWrite(traffic_yellow_2, HIGH);
+  delay(1500);
+}
+
+
+void setup()
+{
+  pinMode(traffic_request_button, INPUT);
+  
+  pinMode(traffic_green_1, OUTPUT);
+  pinMode(traffic_yellow_1, OUTPUT);
+  pinMode(traffic_red_1, OUTPUT);
+  
+  pinMode(traffic_green_2, OUTPUT);
+  pinMode(traffic_yellow_2, OUTPUT);
+  pinMode(traffic_red_2, OUTPUT);
+}
+
+void loop()
+{
+
+  // verificar botoeira
+  if (digitalRead(traffic_request_button) == 1 && traffic_state == 0){
+    traffic_state = 1;
+  }
+  
+  // loop de funcionamento
+  if (traffic_state == 0) {
+    verticalGo();
+  }
+
+  if (traffic_state == 1) {
+  	verticalTransition();
+    horizontalGo();
+    delay(10 * 1000);
+    horizontalTransition();
+    traffic_state = 0;
+  }
+}
+#endif
+
+
+// -------------------------------------------------------
+
+
+#ifdef exc5
+
+int buzzerPin = 12;
+
+int traffic_state = 0;
+
+int traffic_request_button = 12;
+
+int traffic_green_1 = 10;
+int traffic_yellow_1 = 9;
+int traffic_red_1 = 8;
+
+int traffic_green_2 = 7;
+int traffic_yellow_2 = 6;
+int traffic_red_2 = 5;
+
+
+void horizontalGo(){
+
+  digitalWrite(traffic_yellow_2, LOW);
+  digitalWrite(traffic_green_1, HIGH);
+  digitalWrite(traffic_red_1, LOW);
+  digitalWrite(traffic_red_2, HIGH);
+}
+
+void horizontalTransition(){
+
+  digitalWrite(traffic_green_1, LOW);
+  digitalWrite(traffic_red_1, HIGH);
+  delay(500);
+  digitalWrite(traffic_red_1, LOW);
+  delay(500);
+  digitalWrite(traffic_red_1, HIGH);
+  delay(500);
+  digitalWrite(traffic_red_1, LOW);
+  delay(500);
+}
+
+
+void verticalGo(){
+
+  digitalWrite(traffic_red_1, HIGH);
+  digitalWrite(traffic_red_2, LOW);
+  digitalWrite(traffic_green_2, HIGH);
+}
+
+void verticalTransition(){
+
+  digitalWrite(traffic_green_2, LOW);
+  digitalWrite(traffic_yellow_2, HIGH);
+  delay(1500);
+}
+
+
+void setup()
+{
+  pinMode(buzzerPin, OUTPUT);
+  
+  pinMode(traffic_request_button, INPUT);
+  
+  pinMode(traffic_green_1, OUTPUT);
+  pinMode(traffic_yellow_1, OUTPUT);
+  pinMode(traffic_red_1, OUTPUT);
+  
+  pinMode(traffic_green_2, OUTPUT);
+  pinMode(traffic_yellow_2, OUTPUT);
+  pinMode(traffic_red_2, OUTPUT);
+}
+
+void loop()
+{
+
+  // verificar botoeira
+  if (digitalRead(traffic_request_button) == 1 && traffic_state == 0){
+    tone(buzzerPin, 400, 100);
+    traffic_state = 1;
+  }
+  
+  // loop de funcionamento
+  if (traffic_state == 0) {
+    verticalGo();
+  }
+
+  if (traffic_state == 1) {
+  	verticalTransition();
+    horizontalGo();
+    delay(10 * 1000);
+    horizontalTransition();
+    traffic_state = 0;
+  }
+}
+#endif
