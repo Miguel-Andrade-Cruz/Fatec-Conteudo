@@ -60,7 +60,7 @@ void lcd_write_temp(int temp) {
 }
 
 
-void lcd_write_blue_led(int led_state) {
+void lcd_write_blue_led(char led_state) {
     
     int line = 1;
     int index = 10;
@@ -71,7 +71,7 @@ void lcd_write_blue_led(int led_state) {
     return;
 }
 
-void lcd_write_yellow_led(int led_state) {
+void lcd_write_yellow_led(char led_state) {
     
     int line = 1;
     int index = 15;
