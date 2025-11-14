@@ -5,38 +5,39 @@
 
 int char_to_int(char character) {
     
-    int CONVERT_BITMASK = 0b00001111;
-    return character & CONVERT_BITMASK;
+    int BITMASK = 0b00001111;
+
+    return character & BITMASK;
 }
 
 char int_to_char(int integer) {
-
-    int CONVERT_BITMASK = 0b01000000;
-    int offset = 9;
     
-    return (integer - offset) | CONVERT_BITMASK;
+    int NUMERIC_BITMASK = 0b00110000;
+    int ALPHA_BITMASK = 0b01000000;
+    
+    if (integer < 9) return integer | NUMERIC_BITMASK;
+    
+    return integer | ALPHA_BITMASK;
 }
 
 
 
-void chars_to_ints(ConversionPackage *package, int *int_vector) {
+void chars_to_ints(char *before_vector, int *after_vector, int size) {
     
-    for (int i = 0; i < package->size; i++) {
+    for (int i = 0; i < size; i++) {
         
-        int_vector[i] = char_to_int(package->current_number[i]);
+        after_vector[i] = char_to_int(before_vector[i]);
     }
-    
     return;
 }
 
 
-void ints_to_chars(ConversionPackage *package, char *char_vector) {
+void ints_to_chars(int *before_vector, char *afer_vector, int size) {
     
     
-    for (int i = 0; i < package->size; i++) {
+    for (int i = 0; i < size; i++) {
         
-        char_vector[i] = package->current_number[i];
+        afer_vector[i] = int_to_char(before_vector[i]);
     }
-    
     return;
 }

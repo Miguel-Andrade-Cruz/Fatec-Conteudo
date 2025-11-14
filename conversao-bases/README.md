@@ -56,11 +56,11 @@ func4 simplified = (b or o) and d
 
 
 
-BIN to HEX --> chunker
+BIN to HEX --> func3
 BIN to DEC --> func1 func4
-BIN to OCT --> chunker
+BIN to OCT --> func3
 
-OCT to HEX --> func1 func2 chunker
+OCT to HEX --> func1 func2 func3
 OCT to DEC --> func1 func4
 OCT to BIN --> func1 func2
 
@@ -69,7 +69,7 @@ DEC to OCT --> func4 func2
 DEC to BIN --> func4 func2
 
 HEX to DEC --> func1 func4
-HEX to OCT --> func1 func2 chunker
+HEX to OCT --> func1 func2 func3
 HEX to BIN --> func1 func2
 
 

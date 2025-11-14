@@ -2,7 +2,7 @@
 // Algarism limits for correspondent bases
 
 typedef enum {
-    LIMIT_BASE_2 = 15,
+    LIMIT_BASE_2 = 16,
     LIMIT_BASE_8 = 5,
     LIMIT_BASE_10 = 5,
     LIMIT_BASE_16 = 4,
@@ -18,4 +18,5 @@ ALG_LIMIT get_alg_limit(int base) {
     
     return alg_limit;
 }
+
 

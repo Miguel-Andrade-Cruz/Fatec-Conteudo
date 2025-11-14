@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "wrap_type.c"
+#include "translators.c"
 
 
 int get_base(int get_current) {
@@ -21,9 +21,22 @@ int get_base(int get_current) {
 }
 
 
-void get_number(char *number) {
+
+
+int valid_number(char *maybe) {
     
-    int valid_number(char *maybe); // desenvolver validação
+    int BITMASK_PADRONIZE = 0b00001111;
+    for (int i = 0; i < LIMIT_MAX; i++) {
+        int algarism_padronized = maybe[i] & BITMASK_PADRONIZE;
+        
+        if (algarism_padronized < 0 && algarism_padronized > 15) {
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+void get_number(int *number) {
     
     char hold[LIMIT_MAX];
     do {
@@ -31,7 +44,7 @@ void get_number(char *number) {
         scanf("%s", hold);
     } while (valid_number(hold) == 0);
     
-    number = hold;
+    chars_to_ints(hold, number, LIMIT_MAX);
     return;
 }
 
@@ -40,8 +53,9 @@ void pack_input(ConversionPackage *package) {
     
     package->current_base = get_base(1);
     package->target_base = get_base(0);
-    get_number(package->current_number);
     package->size = get_alg_limit(package->current_base);
+    
+    get_number(package->current_number);
 
     return;
 }
