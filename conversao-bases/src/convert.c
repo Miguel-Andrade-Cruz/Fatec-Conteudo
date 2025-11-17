@@ -39,13 +39,14 @@ void decimal_to_x(ConversionPackage *package) {
 }
 
 
-void binary_partition(int *binary_sequence, int chunk_size, int conjunt[1][4]) {
+void bin_to_dec_partition(ConversionPackage *package, int chunk_size) {
+    
+    ConversionPackage transition_package = {.target_base = 2, .size = LIMIT_BASE_2};
     
     int chunk[chunk_size];
-    
     int portion_index;
     int next_value;
-    for (int index = 0; index < LIMIT_BASE_2;) {
+    for (int index = 0, chunk_index = 0; index < LIMIT_BASE_2; chunk_index++) {
         
         portion_index = 0;
         while (portion_index % chunk_size != 0 || portion_index == 0) {
@@ -53,14 +54,16 @@ void binary_partition(int *binary_sequence, int chunk_size, int conjunt[1][4]) {
             if (index > LIMIT_BASE_2 - 1) {
                 next_value = 0;
             } else {
-                next_value = binary_sequence[index];
+                next_value = package->current_number[index];
             }
             
-            chunk[portion_index] = next_value;
+            transition_package.current_number[portion_index] = next_value;
             portion_index++;
             index++;
         }
         
+        x_to_decimal(&transition_package);
+        package->current_number[chunk_index] = transition_package.base_10_number;
         
     }
     
