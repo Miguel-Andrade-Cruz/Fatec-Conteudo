@@ -107,7 +107,7 @@ void lcd_write_intensity(int intensity) {
 // INPUT FUNCTIONS
 float get_temp_in_celsius() {
     
-    return (float)(analogRead(temp_sensor) * 5.0 / 1023 * 1000 - 500) / 10;
+    return (float)((analogRead(temp_sensor) * 5.0 / 1023 * 1000 - 500) / 10);
 }
 
 int read_button_1_state() {
