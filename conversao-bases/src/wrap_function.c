@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "translators.c"
 
 
@@ -36,7 +37,7 @@ int valid_number(char *maybe) {
 }
 
 
-void get_number(int *number) {
+void get_number(int *returned) {
     
     char hold[LIMIT_MAX];
     do {
@@ -44,7 +45,7 @@ void get_number(int *number) {
         scanf("%s", hold);
     } while (valid_number(hold) == 0);
         
-    chars_to_ints(hold, number);
+    chars_to_ints(hold, returned);
     return;
 }
 
