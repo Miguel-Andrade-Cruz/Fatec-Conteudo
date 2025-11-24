@@ -2,12 +2,12 @@
 #include "translators.c"
 
 
-int get_base(int get_current) {
+int get_base(char get_current) {
     
     int base;
     do {
-        if (get_current == 1) { printf("Insira a base numérica atual:  \n"); }
-        if (get_current == 0) { printf("Insira a base numérica desejada:  \n"); }
+        if (get_current == 'c') { printf("Insira a base numérica atual:  \n"); }
+        if (get_current == 't') { printf("Insira a base numérica desejada:  \n"); }
         scanf("%d", &base);
     } while (   
                 base != 2 &&
@@ -19,8 +19,6 @@ int get_base(int get_current) {
     
     return base;
 }
-
-
 
 
 int valid_number(char *maybe) {
@@ -36,6 +34,8 @@ int valid_number(char *maybe) {
     
     return 1;
 }
+
+
 void get_number(int *number) {
     
     char hold[LIMIT_MAX];
@@ -43,10 +43,27 @@ void get_number(int *number) {
         printf("Insira o número:  \n");
         scanf("%s", hold);
     } while (valid_number(hold) == 0);
-    
-    chars_to_ints(hold, number, LIMIT_MAX);
+        
+    chars_to_ints(hold, number);
     return;
 }
+
+
+void clean(char *raw) {
+    
+    int algarisms_used = 0;
+    while (raw[algarisms_used] != '\0') algarisms_used++;
+    
+    int offset = LIMIT_MAX - algarisms_used;
+    for (int i = 0; i < algarisms_used; i++) {
+        
+        raw[i + offset] = raw[i];
+        raw[i] = '\0';
+    }
+    
+    return;
+}
+
 
 
 void pack_input(ConversionPackage *package) {
@@ -56,6 +73,7 @@ void pack_input(ConversionPackage *package) {
     package->size = get_alg_limit(package->current_base);
     
     get_number(package->current_number);
+    package->current_algarism_qtd = sizeof(package->current_number) / sizeof(int);
 
     return;
 }
