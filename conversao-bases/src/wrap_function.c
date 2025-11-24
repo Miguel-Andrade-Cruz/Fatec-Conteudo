@@ -80,7 +80,6 @@ void pack_input(ConversionPackage *package) {
     package->size = get_alg_limit(package->current_base);
     
     get_number(package->size, package->current_number);
-    package->current_algarism_qtd = sizeof(package->current_number) / sizeof(int);
 
     return;
 }
