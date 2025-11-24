@@ -39,7 +39,7 @@ int valid_number(char *maybe) {
 
 void get_number(int *returned) {
     
-    char hold[LIMIT_MAX];
+    char hold[LIMIT_MAX] = {0};
     do {
         printf("Insira o número:  \n");
         scanf("%s", hold);
