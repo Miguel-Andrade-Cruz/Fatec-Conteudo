@@ -36,26 +36,7 @@ int valid_number(char *maybe) {
 }
 
 
-void get_number(int size, int *returned) {
-    
-    int char_counter;
-    
-    char hold[LIMIT_MAX] = {0};
-    do {
-        char_counter = 0;
-        
-        printf("Insira o número:  \n");
-        scanf("%s", hold);
-        
-        while (hold[char_counter] != '\0') char_counter++;        
-    } while (char_counter > size || valid_number(hold) == 0);
-    
-    chars_to_ints(hold, returned);
-    return;
-}
-
-
-void clean(char *raw) {
+void slide_right(char *raw) {
     
     int algarisms_used = 0;
     while (raw[algarisms_used] != '\0') algarisms_used++;
@@ -70,6 +51,26 @@ void clean(char *raw) {
     return;
 }
 
+
+void get_number(int size, int *returned) {
+    
+    int char_counter;
+    
+    char hold[LIMIT_MAX] = {0};
+    do {
+        char_counter = 0;
+        
+        printf("Insira o número:  \n");
+        scanf("%s", hold);
+        
+        while (hold[char_counter] != '\0') char_counter++;        
+    } while (char_counter > size || valid_number(hold) == 0);
+    
+    slide_right(hold);
+    chars_to_ints(hold, returned);
+    
+    return;
+}
 
 
 void pack_input(ConversionPackage *package) {
