@@ -22,9 +22,9 @@ char int_to_char(int integer) {
 
 
 
-void chars_to_ints(char *before_vector, int *after_vector, int size) {
+void chars_to_ints(char *before_vector, int *after_vector) {
     
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < LIMIT_MAX; i++) {
         
         after_vector[i] = char_to_int(before_vector[i]);
     }
@@ -32,10 +32,9 @@ void chars_to_ints(char *before_vector, int *after_vector, int size) {
 }
 
 
-void ints_to_chars(int *before_vector, char *afer_vector, int size) {
+void ints_to_chars(int *before_vector, char *afer_vector) {
     
-    
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < LIMIT_MAX; i++) {
         
         afer_vector[i] = int_to_char(before_vector[i]);
     }
