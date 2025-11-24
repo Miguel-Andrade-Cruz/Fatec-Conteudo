@@ -36,14 +36,20 @@ int valid_number(char *maybe) {
 }
 
 
-void get_number(int *returned) {
+void get_number(int size, int *returned) {
+    
+    int char_counter;
     
     char hold[LIMIT_MAX] = {0};
     do {
+        char_counter = 0;
+        
         printf("Insira o número:  \n");
         scanf("%s", hold);
-    } while (valid_number(hold) == 0);
         
+        while (hold[char_counter] != '\0') char_counter++;        
+    } while (char_counter > size || valid_number(hold) == 0);
+    
     chars_to_ints(hold, returned);
     return;
 }
@@ -72,7 +78,7 @@ void pack_input(ConversionPackage *package) {
     package->target_base = get_base(0);
     package->size = get_alg_limit(package->current_base);
     
-    get_number(package->current_number);
+    get_number(package->size, package->current_number);
     package->current_algarism_qtd = sizeof(package->current_number) / sizeof(int);
 
     return;
