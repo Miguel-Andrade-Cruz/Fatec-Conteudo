@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "translators.c"
 
 
@@ -7,8 +6,8 @@ int get_base(char get_current) {
     
     int base;
     do {
-        if (get_current == 'c') { printf("Insira a base numérica atual:  \n"); }
-        if (get_current == 't') { printf("Insira a base numérica desejada:  \n"); }
+        if (get_current == 'c') { printf("Insira a base numérica atual:  "); }
+        if (get_current == 't') { printf("Insira a base numérica desejada:  "); }
         scanf("%d", &base);
     } while (   
                 base != 2 &&
@@ -62,7 +61,7 @@ void get_number(int size, int *returned) {
     do {
         char_counter = 0;
         
-        printf("Insira o número:  \n");
+        printf("Insira o número:  ");
         scanf("%s", hold);
         
         while (hold[char_counter] != '\0') char_counter++;        
@@ -82,6 +81,6 @@ void pack_input(ConversionPackage *package) {
     package->size = get_alg_limit(package->current_base);
     
     get_number(package->size, package->current_number);
-
+    
     return;
 }
