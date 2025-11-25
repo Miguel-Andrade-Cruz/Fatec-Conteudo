@@ -75,8 +75,8 @@ void get_number(int size, int *returned) {
 
 void pack_input(ConversionPackage *package) {
     
-    package->current_base = get_base(1);
-    package->target_base = get_base(0);
+    package->current_base = get_base('c');
+    package->target_base = get_base('t');
     package->size = get_alg_limit(package->current_base);
     
     get_number(package->size, package->current_number);
