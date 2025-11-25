@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "translators.c"
 
 
@@ -36,18 +37,19 @@ int valid_number(char *maybe) {
 }
 
 
-void slide_right(char *raw) {
+void slide_right(char *array) {
     
+    char placeholder[LIMIT_MAX] = {0};
     int algarisms_used = 0;
-    while (raw[algarisms_used] != '\0') algarisms_used++;
+    while (array[algarisms_used] != '\0') algarisms_used++;
     
     int offset = LIMIT_MAX - algarisms_used;
     for (int i = 0; i < algarisms_used; i++) {
         
-        raw[i + offset] = raw[i];
-        raw[i] = '\0';
+        placeholder[i + offset] = array[i];
     }
     
+    memcpy(array, placeholder, sizeof(placeholder) / sizeof(char));
     return;
 }
 
