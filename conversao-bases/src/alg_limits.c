@@ -6,7 +6,7 @@ typedef enum {
     LIMIT_BASE_8 = 5,
     LIMIT_BASE_10 = 5,
     LIMIT_BASE_16 = 4,
-    LIMIT_MAX = 15
+    LIMIT_MAX = 16
 } ALG_LIMIT;
 
 ALG_LIMIT get_alg_limit(int base) {
