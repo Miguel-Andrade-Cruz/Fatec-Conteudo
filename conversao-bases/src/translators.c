@@ -11,7 +11,6 @@ int char_to_int(char character) {
     }
     return character & BITMASK;
 }
-// 01101 1100 = 0100
 
 char int_to_char(int integer) {
     
