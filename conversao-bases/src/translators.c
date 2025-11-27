@@ -1,26 +1,26 @@
-#include "wrap_type.c"
-#include <string.h>
-
-// Resolve null character for both conversions
+#include "conversion_package.c"
 
 
 int char_to_int(char character) {
     
     const int BITMASK = 0x0F;
+    const int offset = 10;
+    
     if (character >= 'A') {
-        return character - 'A' + 10;
+        return character - 'A' + offset;
     }
     return character & BITMASK;
 }
-
+// 01101 1100 = 0100
 
 char int_to_char(int integer) {
     
     const int NUMERIC_BITMASK = 0x30;
     const int ALPHA_BITMASK = 0x40;
+    const int offset = 9;
     
     if (integer < 10) return integer | NUMERIC_BITMASK;
-    return (integer - 9) | ALPHA_BITMASK;
+    return (integer - offset) | ALPHA_BITMASK;
 }
 
 
