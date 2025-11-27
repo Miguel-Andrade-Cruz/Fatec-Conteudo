@@ -1,6 +1,5 @@
 #include <math.h>
-#include <string.h>
-#include "gui.c"
+#include "interface.c"
 
 
 void x_to_decimal(ConversionPackage *package) {
@@ -70,15 +69,12 @@ void bin_to_dec_partition(ConversionPackage *package, int chunk_size) {
             
         }
         x_to_decimal(&transition_package);
-        printf("(78) -- %d\n", transition_package.base_10_number);
         package->target_number[chunk_index] = transition_package.base_10_number;
         
     }
 
     return;
 }
-
-
 
 
 void convert(ConversionPackage *package) {
@@ -148,3 +144,4 @@ void convert(ConversionPackage *package) {
 
     return;
 }
+
