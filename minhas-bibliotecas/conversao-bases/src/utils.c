@@ -1,14 +1,18 @@
 #include <string.h>
 #include "translators.c"
 
-
-int valid_number(char *maybe) {
+int valid_number(char *maybe, int base) {
     
-    int BITMASK_PADRONIZE = 0b00001111;
+    const int offset = 10;
+    
     for (int i = 0; i < LIMIT_MAX; i++) {
-        int algarism_padronized = maybe[i] & BITMASK_PADRONIZE;
+        unsigned int algarism_padronized = maybe[i] & TO_INT_BITMASK;
         
-        if (algarism_padronized < 0 && algarism_padronized > 15) {
+        if (algarism_padronized > 'A') {
+            algarism_padronized -= 'A' + offset;
+        }
+        
+        if (algarism_padronized < 0 || algarism_padronized >= base) {
             return 0;
         }
     }
