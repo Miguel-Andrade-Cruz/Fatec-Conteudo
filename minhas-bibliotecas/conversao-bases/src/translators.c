@@ -3,23 +3,20 @@
 
 int char_to_int(char character) {
     
-    const int BITMASK = 0x0F;
     const int offset = 10;
     
     if (character >= 'A') {
         return character - 'A' + offset;
     }
-    return character & BITMASK;
+    return character & TO_INT_BITMASK;
 }
 
 char int_to_char(int integer) {
     
-    const int NUMERIC_BITMASK = 0x30;
-    const int ALPHA_BITMASK = 0x40;
     const int offset = 9;
     
-    if (integer < 10) return integer | NUMERIC_BITMASK;
-    return (integer - offset) | ALPHA_BITMASK;
+    if (integer < 10) return integer | TO_CHAR_DIGIT_BITMASK;
+    return (integer - offset) | TO_CHAR_ALPHA_BITMASK;
 }
 
 
