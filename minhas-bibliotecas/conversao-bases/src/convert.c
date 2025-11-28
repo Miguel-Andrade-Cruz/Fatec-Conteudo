@@ -1,5 +1,5 @@
 #include <math.h>
-#include "interface.c"
+#include "utils.c"
 
 
 void x_to_decimal(ConversionPackage *package) {
@@ -10,8 +10,6 @@ void x_to_decimal(ConversionPackage *package) {
     }
     package->base_10_number = converted;
 
-    // printf("(l 20) -- %d", package->base_10_number);
-    
     return;
 }
 

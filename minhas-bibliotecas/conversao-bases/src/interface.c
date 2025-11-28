@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "utils.c"
-
+#include "convert.c"
 
 void get_current_base_message() {
     printf("Base do número digitado: \n");
@@ -38,7 +37,7 @@ int get_base(char get_current) {
 }
 
 
-void get_number(int size, int *returned) {
+void get_number(int size, int base, int *returned) {
     
     int char_counter;
     
@@ -50,7 +49,8 @@ void get_number(int size, int *returned) {
         scanf("%s", hold);
         
         while (hold[char_counter] != '\0') char_counter++;        
-    } while (char_counter > size || valid_number(hold) == 0);
+    } while (
+        char_counter > size || valid_number(hold, base) == 0);
     
     slide_right(hold);
     chars_to_ints(hold, returned);
@@ -65,7 +65,7 @@ void pack_input(ConversionPackage *package) {
     package->target_base = get_base('t');
     package->size = get_alg_limit(package->current_base);
     
-    get_number(package->size, package->current_number);
+    get_number(package->size, package->current_base, package->current_number);
     
     return;
 }
