@@ -1,5 +1,12 @@
 
-// Algarism limits for correspondent bases
+const int TO_INT_OFFSET = 10;
+const int TO_CHAR_OFFSET = 9;
+
+const int TO_INT_BITMASK = 0x0F;
+
+const int TO_CHAR_DIGIT_BITMASK = 0x30;
+const int TO_CHAR_ALPHA_BITMASK = 0x40;
+
 
 typedef enum {
     LIMIT_BASE_2 = 16,
