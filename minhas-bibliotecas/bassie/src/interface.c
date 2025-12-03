@@ -41,18 +41,20 @@ int get_base(char get_current) {
 void get_number(int size, int base, int *returned) {
     
     int char_counter;
-    
     char hold[LIMIT_MAX] = {0};
+
     do {
         char_counter = 0;
         
         get_number_to_convert_message();
         scanf("%s", hold);
         
-        while (hold[char_counter] != '\0') char_counter++;        
+        while (hold[char_counter] != '\0') char_counter++;
+        
     } while (
-        char_counter > size || valid_number(hold, base) == 0);
-    
+        char_counter > size || valid_number(hold, base) == 0
+    );
+
     slide_right(hold);
     chars_to_ints(hold, returned);
     
