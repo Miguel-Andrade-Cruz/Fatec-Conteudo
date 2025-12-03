@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include "convert.c"
 
+
 void get_current_base_message() {
-    printf("Base do número digitado: \n");
+    printf("Digite a base atual: ");
     return;
 }
 
 
 void get_target_base_message() {
-    printf("Base a ser convertida: \n");
+    printf("Digite a base desejada: ");
     return;
 }
 
 
 void get_number_to_convert_message() {
-    printf("Número a ser convertido: \n");
+    printf("Digite o número: ");
     return;
 }
 
@@ -23,8 +24,8 @@ int get_base(char get_current) {
     
     int base;
     do {
-        if (get_current == 'c') { printf("Insira a base numérica atual: "); }
-        if (get_current == 't') { printf("Insira a base numérica desejada: "); }
+        if (get_current == 'c') { get_current_base_message(); }
+        if (get_current == 't') { get_target_base_message(); }
         scanf("%d", &base);
     } while (   
         base != 2 &&
@@ -45,7 +46,7 @@ void get_number(int size, int base, int *returned) {
     do {
         char_counter = 0;
         
-        printf("Insira o número:  ");
+        get_number_to_convert_message();
         scanf("%s", hold);
         
         while (hold[char_counter] != '\0') char_counter++;        
@@ -62,10 +63,10 @@ void get_number(int size, int base, int *returned) {
 void pack_input(ConversionPackage *package) {
     
     package->current_base = get_base('c');
-    package->target_base = get_base('t');
-    package->size = get_alg_limit(package->current_base);
-    
     get_number(package->size, package->current_base, package->current_number);
+    package->target_base = get_base('t');
+    
+    package->size = get_alg_limit(package->current_base);
     
     return;
 }
@@ -83,12 +84,13 @@ void show_output(ConversionPackage *package) {
     slide_left(target_char_output);
     
     printf(
-        "\n Número: %s  Base numérica: %d \n Número: %s  Base numérica: %d \n",
+        "%s(%d) ==>> %s(%d)",
         current_char_output,
         package->current_base,
         target_char_output,
         package->target_base
     );
+    printf("\n");
     
     return;
 }

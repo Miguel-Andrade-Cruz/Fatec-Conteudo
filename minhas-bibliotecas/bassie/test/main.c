@@ -1,4 +1,4 @@
-#include "bassie.c"
+#include "../src/bassie.c"
 
 int main() {
     
