@@ -1,0 +1,226 @@
+#define exc1
+
+
+// -------------------------------------------------------
+
+#ifdef exc1
+
+int ext_led = 12;
+int int_led = LED_BUILTIN;
+
+void setup(){
+  pinMode(ext_led, OUTPUT);
+}
+
+
+
+void loop(){
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, HIGH);
+  delay(4000);
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(4000);
+}
+#endif
+
+// ------------------------------------------------------------
+
+#ifdef exc2
+
+int ext_led = 12;
+int int_led = LED_BUILTIN;
+
+void setup(){
+
+  pinMode(ext_led, OUTPUT);
+}  
+
+
+void loop(){
+
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, HIGH);
+  delay(2000);
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(4000);
+
+
+}
+
+#endif
+
+// -------------------------------------------------------
+
+#ifdef exc3
+
+int ext_led = 12;
+int int_led = LED_BUILTIN;
+
+
+void setup(){
+
+  pinMode(ext_led, OUTPUT);
+}  
+
+
+void loop(){
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, HIGH);
+  delay(2000);
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(4000);
+
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, HIGH);
+  delay(3000);
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(5000);
+
+}
+
+#endif
+
+// --------------------------------------------------------------
+
+#ifdef exc4
+
+/*
+	Nesse exercício, altere a ligação do LED:
+    
+    mude a ligação do fio vermelho,
+    com uma ponta ligada á protoboard na coordenada
+    a - 7. Na outra extremidade, mude do pino 12 do arduino
+    para o pino 13.
+
+*/
+
+
+int ext_led = 13;
+int int_led = LED_BUILTIN;
+
+
+void setup(){
+
+  pinMode(ext_led, OUTPUT);
+}  
+
+
+void loop(){
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, HIGH);
+  delay(1000);
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(1000);
+}
+
+#endif
+
+// --------------------------------------------------------------
+
+#ifdef exc5
+
+int ext_led = 12;
+int int_led = LED_BUILTIN;
+
+void setup(){
+  pinMode(ext_led, OUTPUT);
+}
+
+void loop(){
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(2000);
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, LOW);
+  delay(3000);
+}
+#endif
+
+// -------------------------------------------------------
+
+#ifdef exc6
+// Pinos de ativação
+
+int led_ext = 12;
+int led_int = LED_BUILTIN;
+
+int tick_size = 500;
+int current_time;
+int current_tick;
+
+// time in ticks
+int int_cycle_on = 5;
+int int_cycle_off = 9;
+int int_full_cycle = int_cycle_on + int_cycle_off;
+
+int ext_cycle_on = 6;
+int ext_cycle_off = 10;
+int ext_full_cycle = ext_cycle_on + ext_cycle_off;
+
+
+void setup() {
+  
+  pinMode(led_int, OUTPUT);
+  pinMode(led_ext, OUTPUT);
+  
+}
+
+
+void loop() {
+  
+  current_time = millis();
+  current_tick = current_time / tick_size;
+  
+  if (current_tick % int_full_cycle < int_cycle_on) {
+    digitalWrite(led_int, HIGH);
+  } else {
+    digitalWrite(led_int, LOW);
+  }
+  
+  if (current_tick % ext_full_cycle < ext_cycle_on) {
+    digitalWrite(led_ext, HIGH);
+  } else {
+    digitalWrite(led_ext, LOW);
+  }
+}
+#endif
+
+
+// ------------------------------------------------------
+
+ifdef exc7
+
+int ext_led = 12;
+int int_led = LED_BUILTIN;
+
+void setup(){
+  pinMode(ext_led, OUTPUT);
+}
+
+void loop(){
+  
+  digitalWrite(ext_led, LOW);
+  digitalWrite(int_led, HIGH);
+  delay(1000);
+  
+  digitalWrite(ext_led, HIGH);
+  digitalWrite(int_led, LOW);
+  delay(1000);
+}
+#endif
