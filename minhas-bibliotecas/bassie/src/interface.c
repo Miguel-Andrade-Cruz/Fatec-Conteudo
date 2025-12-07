@@ -20,12 +20,12 @@ void get_number_to_convert_message() {
 }
 
 
-int get_base(char get_current) {
+int get_base(int is_current) {
     
     int base;
     do {
-        if (get_current == 'c') { get_current_base_message(); }
-        if (get_current == 't') { get_target_base_message(); }
+        if (is_current == 1) { get_current_base_message(); }
+        if (is_current == 0) { get_target_base_message(); }
         scanf("%d", &base);
     } while (   
         base != 2 &&
@@ -64,9 +64,9 @@ void get_number(int size, int base, int *returned) {
 
 void pack_input(ConversionPackage *package) {
     
-    package->current_base = get_base('c');
+    package->current_base = get_base(1);
     get_number(package->size, package->current_base, package->current_number);
-    package->target_base = get_base('t');
+    package->target_base = get_base(0);
     
     package->size = get_alg_limit(package->current_base);
     
