@@ -73,10 +73,6 @@ void pull(InputerSet *ipt_set_sketch, Needs *checker) {
     for (int i = 0; i < ipt_set_sketch->qtd; i++) {
         
             Inputer *ipt_sketch = ipt_set_sketch->arr[i];
-        do {
-            
-            printf("%s", ipt_sketch->msg);
-            
             char format_specifier[3];
             // TODO FEATURE: Fazer um enum para format specifiers 
             switch (ipt_sketch->type) {
@@ -90,8 +86,14 @@ void pull(InputerSet *ipt_set_sketch, Needs *checker) {
                     strcpy(format_specifier, "%d");
                     break;
             }
+        do {
             
-            scanf(format_specifier, &(ipt_sketch->value));
+            printf("%s", ipt_sketch->msg);
+            
+            if ( scanf(format_specifier, &ipt_sketch->value) == 0 ) {
+                while (getchar() != '\n'); // clean buffer, avoid reading old data
+                continue;
+            }
         } while (checklist(ipt_sketch, checker) == 0);
     }
 
