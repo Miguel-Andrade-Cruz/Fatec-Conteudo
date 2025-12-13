@@ -26,8 +26,11 @@ int get_base(int is_current) {
     do {
         if (is_current == 1) { get_current_base_message(); }
         if (is_current == 0) { get_target_base_message(); }
-        scanf("%d", &base);
-    } while (   
+        if ( scanf("%d", &base) == 0 ) {
+            while (getchar() != '\n');
+            continue;
+        };
+    } while (
         base != 2 &&
         base != 8 &&
         base != 10 &&
