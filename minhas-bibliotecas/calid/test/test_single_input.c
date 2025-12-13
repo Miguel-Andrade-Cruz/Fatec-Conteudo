@@ -12,9 +12,9 @@ int main() {
     
     pull(input_set, checks);
     
-    printf("Your pizza will cost %f \n", takefloat(input_set->arr[0]) * (1 + 0.05));
-    printf("Have a great dinner! \n");
+    printf("Sua pizza irá custar R$%.2f \n", takefloat(input_set->arr[0]) * (1 + 0.1));
+    printf("Bom apetite! \n");
     
     clean_all(input_set, checks);
-    return 0;
+    return 0;   
 }
