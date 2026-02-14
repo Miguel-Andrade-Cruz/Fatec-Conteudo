@@ -1,4 +1,5 @@
 #include "types.c"
+#include <stdio.h>
 
 
 int _more_than_partial(TypedValue value_pack, TypedValue bound_pack) { // Chekcup type signature
@@ -12,7 +13,11 @@ int _more_than_partial(TypedValue value_pack, TypedValue bound_pack) { // Chekcu
     }
     
     float bound = (float)*bound_pack.value.V_INT;
-
+    
+    printf("Valor inserido --maior--: %f (17 validations)\n", value);
+    // int valid = value > bound;
+    // printf("é maior: %d ( 18 validations)\n", valid);
+    
     return value > bound;
 }
 
@@ -40,6 +45,10 @@ int _less_than_partial(TypedValue value_pack, TypedValue bound_pack) {
     }
     
     float bound = (float)*bound_pack.value.V_INT;
+
+    printf("Valor inserido --menor--: %f (49 validations)\n", value);
+    // int valid = value < bound;
+    // printf("é menor: %d ( 49 validations)\n", valid);
 
     return value < bound;
 }

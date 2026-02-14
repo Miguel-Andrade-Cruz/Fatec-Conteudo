@@ -4,7 +4,7 @@
 
 void run_guard_array(Guard *guard) {
     
-    printf("rodou o run guard array ein... (7 gauard.c)\n");
+    // printf("rodou o run guard array ein... (7 gauard.c)\n");
     
     for (int i = 0; i < guard->value_size; i++) {
         

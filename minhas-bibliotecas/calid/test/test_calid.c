@@ -11,6 +11,7 @@ int main() {
             .value = {.V_INT = &qtd},
             .type = T_INT
         },
+        .requires = requirements,
         .value_size = 2,
         .requires_size = 2
     };
