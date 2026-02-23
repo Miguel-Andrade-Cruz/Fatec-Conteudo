@@ -1,7 +1,10 @@
 #!/bin/zsh
 
-ROOT="./"
-ABSOLUTE_ROOT=$(dirname "$(realpath "$0")$ROOT")
+# USAGE
+# compl <compilePath> <executablePath>
+
+
+ABSOLUTE_ROOT=$(dirname "$(realpath "$0")")
 
 compl() {
 
@@ -11,34 +14,13 @@ compl() {
     
     # cd "$compilePath"
     if [ -f $compilePath ]; then
-        files=$compilePath
-    else
-        filesString="$(find ${compilePath} -type f -printf "${compilePath}/%f ")"
-        files=($filesString)
+        filesString="$compilePath"
+    elif [ -d $compilePath ]; then
+        filesString=($compilePath/*.c)
     fi
       
-    echo "FILES LIST: $files"
-        
-    gcc "${files}" -lm -o "${exec_path}"    
+    gcc "${filesString[@]}" -lm -o "${exec_path}"    
     echo "Executable created"
     
     return
-}
-
-
-runni() {
-    
-    case "$1" in
-        
-        -h | --help)
-            help()
-            return
-            ;;
-        
-        -c | --compile)
-            shift
-            compl()
-            return
-            ;;
-    esac
 }
