@@ -5,6 +5,7 @@
 
 
 ABSOLUTE_ROOT=$(dirname "$(realpath "$0")")
+EXE_PATH="$ABSOLUTE_ROOT/.exe"
 
 compl() {
 
@@ -23,4 +24,9 @@ compl() {
     echo "Executable created"
     
     return
+}
+
+runni() {
+    
+    "$EXE_PATH/$1"
 }
