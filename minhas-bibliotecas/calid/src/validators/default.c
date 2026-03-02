@@ -78,7 +78,8 @@ Rule *max_length(Any delimiter) {
 int _numeric_only(Any bound, Any input) {
 
     for (int c = 0; c < strlen(input.value.a_char); c++) {
-        if ( c < 0x30 || c > 0x39 ) {
+        char character = (char)input.value.a_char[c];
+        if ( character < 0x30 || character > 0x39 ) {
             return 0;
         }
     }
