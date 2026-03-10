@@ -25,7 +25,7 @@ int main() {
         printf("Do you want to run again? (s/n): ");
         scanf("%c", &again);
         
-        // clean buffer
+        // clear buffer
         while(getchar() != '\n');
     }
 
