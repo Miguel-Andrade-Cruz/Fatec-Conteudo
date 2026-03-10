@@ -1,15 +1,14 @@
-#include "calid.h"
-#include <stdio.h>
-#include <string.h>
+// #include <stdio.h>
+#include "validators/custom.c"
 
 const int MAX_RULES = 5;
 
-int do_checklist(Any value, RuleSet *requests) {
+int do_checklist(FormField field) {
 
-    for (int check_i = 0; check_i < MAX_RULES; check_i++) {
+    for (int check_i = 0; check_i < field.rules_qtd; check_i++) {
 
-        Rule *rule = requests->requests[check_i];
-        int is_valid = rule->validator(rule->bound, value);
+        Rule rule = field.requests[check_i];
+        int is_valid = rule.validator(rule.bound, field.pointer);
         if (is_valid == 0) {
             return 0;
         }
@@ -34,11 +33,12 @@ void fill_field(FormField field) {
     }
 
     do {
+        printf("%s", field.question);
         if (scanf(format_specifier, &field.pointer.value) == 0) {
             while (getchar() != '\n');
             continue;
         }
-    } while (do_checklist(field.pointer, field.requests) == 0);
+    } while (do_checklist(field) == 0);
 
     return;
 }
