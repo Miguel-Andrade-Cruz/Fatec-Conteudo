@@ -7,15 +7,21 @@
 
 
 int main() {
-    
-    ReadableTime readable_time;
-    
-    int time_in_seconds = recieve_time();
-    readable_time_conversion(time_in_seconds, &readable_time);
-    
-    printf("O tempo inserido equivale a %dh %dmin %ds\n",
-        readable_time.hour,
-        readable_time.minute,
-        readable_time.second
-    );
+
+    char again = 'n';
+    do {
+        ReadableTime readable_time;
+
+        int time_in_seconds = recieve_time();
+        readable_time_conversion(time_in_seconds, &readable_time);
+
+        printf("O tempo inserido equivale a %dh %dmin %ds\n",
+            readable_time.hour,
+            readable_time.minute,
+            readable_time.second
+        );
+
+        printf("Deseja executar novamente? ");
+        scanf("%c", &again);
+    } while (again == 's');
 }
