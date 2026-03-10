@@ -1,7 +1,6 @@
-#include <string.h>
-#include "../calid.h"
+#include "default.c"
 
-int _alphaNum_only(Any bound, Any input) {
+int alphaNum_only(Any bound, AnyPointer input) {
 
     char *value = input.value.a_char;
 
@@ -18,25 +17,7 @@ int _alphaNum_only(Any bound, Any input) {
     return 1;
 }
 
-Rule *alphaNum_only() {
-
-    Rule *alphaNum_only;
-    alphaNum_only->validator = _alphaNum_only;
-
-    return alphaNum_only;
-}
-// 
-// -----------------------------------
-// 
-int _valid_cpf(Any bound, Any input) {
+int valid_cpf(Any bound, AnyPointer input) {
     // TODO: Desenvolver validador de cpf
     return 0; //
-}
-
-Rule *valid_cpf() {
-
-    Rule *valid_cpf;
-    valid_cpf->validator = _valid_cpf;
-
-    return 0;
 }
