@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 
+// TODO: Precisa consertar isso aqui ainda
+
 void input_all_types(
     short short_number,
     long long_number,
