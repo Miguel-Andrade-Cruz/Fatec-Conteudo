@@ -4,8 +4,6 @@
 # compl <compilePath> <executablePath>
 
 
-ABSOLUTE_ROOT=$(dirname "$(realpath "$0")")
-EXE_PATH="$ABSOLUTE_ROOT/.exe"
 
 compl() {
 
