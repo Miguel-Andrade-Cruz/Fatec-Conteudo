@@ -8,3 +8,18 @@
 //                nome2               nome4
 //                          nome3
 
+#include "middleware.h"
+
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
