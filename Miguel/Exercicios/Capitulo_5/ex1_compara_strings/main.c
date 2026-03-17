@@ -6,12 +6,17 @@
 #include "middleware.h"
 
 
-char string_one[10], string_two[10];
+char string_one[STRING_SIZE + 1], string_two[STRING_SIZE + 1];
 
 int main() {
 
     char again = 'n';
     do {
+        
+        ask_for_two_strings(string_one, string_two);
+        int is_equal = string_comparator(string_one, string_two);
+        
+        show_comparison_result(is_equal);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ( s / n )  ");
