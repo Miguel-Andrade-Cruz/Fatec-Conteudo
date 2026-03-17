@@ -8,6 +8,14 @@ int main() {
 
     char again = 'n';
     do {
+        // 'acc' stands for 'accumulate'
+        float acc_num, num;
+        ask_for_two_numbers(&acc_num, &num);
+        
+        add_acc(acc_num, num);
+        sub_acc(acc_num, num);
+        mult_acc(acc_num, num);
+        div_acc(acc_num, num);
         
         // +-+-+-+-+-+-+-+-+-+-
         printf("Deseja executar novamente? ( s / n )  ");
