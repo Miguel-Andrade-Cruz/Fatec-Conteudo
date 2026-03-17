@@ -12,9 +12,11 @@ void ask_for_two_strings(char *str_one, char * str_two) {
     
     printf("Insira a primeira string (máximo 9 carcteres):  ");
     scanf("%s", str_one);
+    clear_buffer();
     
     printf("Insira a segunda string (máximo 9 carcteres):  ");
     scanf("%s", str_two);
+    clear_buffer();
     return;
 }
 
