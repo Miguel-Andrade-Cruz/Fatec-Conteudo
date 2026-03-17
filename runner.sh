@@ -1,30 +1,17 @@
-#!/bin/zsh
+# Bash script for compile C files from a directory,
+# saves it at "execs" folder with the name of the directory
+# and executes it
 
-# USAGE
-# compl <compilePath> <executablePath>
-
-
-
-compl() {
-
-    local compilePath="${ABSOLUTE_ROOT}/$1"
-    local exec_path="${ABSOLUTE_ROOT}/$2"
+    absoluteDir="$1"
+    relativeDir="$2"
+    exec_path="../execs/$relativeDir"
+    echo $exec_path
     
-    
-    # cd "$compilePath"
-    if [ -f $compilePath ]; then
-        filesString="$compilePath"
-    elif [ -d $compilePath ]; then
-        filesString=($compilePath/*.c)
-    fi
+    filesString=($realtiveDir/*.c)
       
-    gcc "${filesString[@]}" -lm -o "${exec_path}"    
+    gcc "${filesString[@]}" -lm -o "${exec_path}"
     echo "Executable created"
     
     return
-}
-
-runni() {
     
     "$EXE_PATH/$1"
-}

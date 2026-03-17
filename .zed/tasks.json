@@ -4,8 +4,11 @@
 [
   {
     "label": "Compile and run task",
-    "command": "../runner.sh",
-    
+    "command": "/home/miguel_andrade/Minuz_code/Repos/Fatec-Conteudo/runner.sh",
+    "args": ["$ZED_DIRNAME", "$ZED_RELATIVE_DIR"],
+    "use_new_terminal": false,
+    "reveal": "always",
+    "reveal_target": "dock"
   },
   {
     "label": "Example task",
