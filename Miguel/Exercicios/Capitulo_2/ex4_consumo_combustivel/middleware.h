@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 
+void clear_buffer();
+
 int ask_kilometers_traveled();
 
 int ask_gasoline_consumed();
