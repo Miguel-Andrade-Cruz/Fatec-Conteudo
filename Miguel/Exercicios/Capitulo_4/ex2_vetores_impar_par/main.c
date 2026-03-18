@@ -3,3 +3,19 @@
 //    e o outro tera“ as componentes de ordem par.
 //    Por exemplo, se o vetor dado for v = {3, 5, 6, 8, 1, 4, 2, 3, 7, 9}, o programa
 //    deve gerar os vetores u = {3, 6, 1, 2, 7} e w = {5, 8, 4, 3, 9}.
+
+#include "middleware.h"
+
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
