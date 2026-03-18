@@ -11,6 +11,13 @@ int main() {
 
     char again = 'n';
     do {
+        int input_vec[VEC_SIZE], even_vec[VEC_SIZE / 2], odd_vec[VEC_SIZE / 2];
+        ask_for_10_numbers(input_vec);
+        
+        extract_even_nums(input_vec, even_vec);
+        extract_odd_nums(input_vec, odd_vec);
+        
+        show_vecs(even_vec, odd_vec);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ( s / n )  ");

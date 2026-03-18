@@ -1,4 +1,13 @@
 #include <stdio.h>
 
+#define VEC_SIZE 10
 
 void clear_buffer();
+
+void ask_for_10_numbers(int *input_vec);
+
+void extract_even_nums(int *input, int *returned);
+
+void extract_odd_nums(int *input, int *returned);
+
+void show_vecs(int *even_vec, int *odd_vec);
