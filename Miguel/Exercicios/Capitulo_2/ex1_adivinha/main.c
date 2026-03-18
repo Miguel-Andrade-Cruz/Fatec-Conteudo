@@ -16,8 +16,10 @@ int main() {
         
         printf("O número escolhido foi %d", guess);
         
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ");
         scanf("%c", &again);
+        clear_buffer();
     } while (again == 's');
     return 0;
 }

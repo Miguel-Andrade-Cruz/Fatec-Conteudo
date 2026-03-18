@@ -1,6 +1,12 @@
 #include "middleware.h"
 
 
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
 void display_message() {
     
     printf("Bem vindo ao adivinhador!\n");
