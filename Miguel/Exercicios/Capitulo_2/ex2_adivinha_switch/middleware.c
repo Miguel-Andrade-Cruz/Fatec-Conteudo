@@ -1,5 +1,4 @@
 #include "middleware.h"
-#include <algorithm>
 
 
 void display_message() {
@@ -9,6 +8,7 @@ void display_message() {
     
     return; //
 }
+
 
 int number_guesser() {
     int guess;
