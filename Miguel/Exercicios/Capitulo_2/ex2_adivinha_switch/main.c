@@ -14,9 +14,11 @@ int main() {
         tries = number_guesser();
         
         printf("Levaram %d tentativas para adivinhar", tries);
-        
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ");
         scanf("%c", &again);
+        clear_buffer();
     } while (again == 's');
     return 0;
 
