@@ -17,7 +17,7 @@ void ask_for_string(char *string) {
 }
 
 
-void lowercase_conversion(char *string) {
+void to_uppercase_conversion(char *string) {
     
     for (int i_char; i_char < STRING_SIZE; i_char++) {
         if (string[i_char] == 0x20) {

@@ -13,7 +13,7 @@ int main() {
         ask_for_string(string);
         printf("A string digitada foi: %s", string);
         
-        lowercase_conversion(string);
+        to_uppercase_conversion(string);
         show_string_change(string);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+
