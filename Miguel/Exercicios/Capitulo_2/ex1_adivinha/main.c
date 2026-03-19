@@ -14,10 +14,10 @@ int main() {
         display_message();
         guess = number_guesser();
         
-        printf("O número escolhido foi %d", guess);
+        printf("O número escolhido foi %d\n\n", guess);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        printf("Deseja executar novamente? ");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
     } while (again == 's');
