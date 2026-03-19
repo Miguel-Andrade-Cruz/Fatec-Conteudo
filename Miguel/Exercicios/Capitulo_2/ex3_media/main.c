@@ -12,7 +12,7 @@ int main() {
         int average = acummulator();
         show_average(average);
         
-        printf("Deseja executar novamente? ( s / n ) ");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
     } while (again == 's');

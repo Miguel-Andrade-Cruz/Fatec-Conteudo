@@ -11,7 +11,7 @@ void clear_buffer() {
 
 void show_average(int average) {
     
-    printf("O valor médio dos números digitados é %d", average);
+    printf("O valor médio dos números digitados é %d\n\n", average);
     return;
 }
 
@@ -28,7 +28,8 @@ int acummulator() {
         sum += inputed;
         numbers_passed++;
     } while (inputed >= 0);
-    sum += inputed * (-1); // Revert the negative acummulation
+    numbers_passed--;      // Revert negative count
+    sum += inputed * (-1); // Revert negative acummulation
     
     average = sum / numbers_passed;
     return average;
