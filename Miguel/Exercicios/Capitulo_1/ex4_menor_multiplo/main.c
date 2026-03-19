@@ -8,17 +8,19 @@
 
 
 int main() {
-
+    
     char again = 'n';
     do {
         int reference_number = input_reference_number();
         int minimal_limit = input_minimal_limit();
         int minimal_factor = get_minimal_factor(reference_number, minimal_limit);
-
+        
         printf("O menor múltiplo de %d maior que %d é %d\n", reference_number, minimal_limit, minimal_factor);
-
-        printf("Deseja inserir um novo número? ");
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n)  ");
         scanf("%c", &again);
+        clear_buffer();
     } while (again == 's');
     return 0;
 }
