@@ -4,7 +4,6 @@
 //    horas, minutos e segundo e determina o intervalo de tempo
 //    (em horas, minutos e segundos) decorrido entre eles.
 
-
 #include "middleware.h"
 
 
@@ -12,7 +11,6 @@
 int main() {
 
     char again = 'n';
-
     do {
         // <s> means start
         // <e> means end
@@ -24,7 +22,7 @@ int main() {
         int s_time_seconds = ask_call_start();
         int e_time_seconds = ask_call_end();
 
-        d_time_seconds = s_time_seconds - e_time_seconds;
+        d_time_seconds = e_time_seconds - s_time_seconds;
 
         d_hour = convert_hours(d_time_seconds);
         d_minute = convert_minutes(d_time_seconds);
@@ -34,7 +32,7 @@ int main() {
 
 
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar novamente? ");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
     } while (again == 's');

@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-const int TIME_FACTOR = 60;
+#define TIME_FACTOR 60
 
 void clear_buffer();
 
