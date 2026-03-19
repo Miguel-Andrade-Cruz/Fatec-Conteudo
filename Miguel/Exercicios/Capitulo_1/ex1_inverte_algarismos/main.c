@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include "middleware.h"
-
-
-
 // 1 - Faça um programa para ler um numero inteiro, positivo de tres digitos, e gerar
 //      outro número formado pelos dígitos invertidos do número lido.
 //      Ex:   NúmeroLido = 123
@@ -10,24 +5,24 @@
 
 // 2490 --> 0942
 
+#include "middleware.h"
+
 
 int main() {
     
     char again = 'n';
     
-    while (again == 's') {
+    do {
         
         int clean_input = valid_input();
-        int inverted_algarisms = mirror_number(clean_input);
+        int refelected_input = reflect_number(clean_input);
         
-        printf("Generated the inverse of %d: --> %d \n\n", clean_input, inverted_algarisms);
+        printf("Generated the inverse of %d: --> %d \n\n", clean_input, refelected_input);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        printf("Deseja executar novamente? ( s / n ): ");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
-        
-    }
-    
+    } while (again == 's');
     return 0;
 }

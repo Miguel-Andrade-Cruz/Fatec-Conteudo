@@ -2,8 +2,6 @@
 
 #define DEBUG
 
-const int BASE_DEC = 10;
-const int ALGS_QTD = 3;
 
 void clear_buffer() {
     
@@ -26,35 +24,26 @@ int valid_input() {
 }
 
 
-void decompose(int origin_input, int *decomposed) {
+int reflect_number(int input) {
     
-    int quocient = origin_input;
-    for (int i = 0; i < ALGS_QTD; i++) {
-        decomposed[i] = quocient % BASE_DEC;
-        quocient /= BASE_DEC;
-    }
+    int hundreds, tens, units;
+    int mirror_input = 0;
     
-    return;
-}
-
-
-int recompose(int *decomposed) {
+    // get the hundreds
+    hundreds = input / (BASE_TEN * BASE_TEN);
+    mirror_input += hundreds * (BASE_TEN / BASE_TEN);
     
-    int recomposed;
-    for (int i = ALGS_QTD -1, exp = 0; i >= 0; i--, exp++) {
-        recomposed += (int) (pow(BASE_DEC, exp) * decomposed[i]);
-    }
+    input -= hundreds * (BASE_TEN * BASE_TEN);
     
-    return recomposed;
-}
-
-
-int mirror_number(int origin_input) {
+    // get the tens
+    tens = input / BASE_TEN;
+    mirror_input += tens * BASE_TEN;
     
-    int decomposed[3];
+    input -= tens * BASE_TEN;
     
-    decompose(origin_input, decomposed);
-    int mirrored = recompose(decomposed);
+    // get the units
+    units = input / (BASE_TEN / BASE_TEN);
+    mirror_input += units * (BASE_TEN * BASE_TEN);
     
-    return mirrored;
+    return mirror_input;
 }
