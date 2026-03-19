@@ -1,5 +1,4 @@
 #include "middleware.h"
-#include <stdio.h>
 
 
 void clear_buffer() {
@@ -43,6 +42,7 @@ void show_consumption(float consumption) {
     const int LOW_EFFICIENCY = 8;
     const int HIGH_EFFICIENCY = 14;
     
+    printf("Consumo médio: %.1fKm/L  ", consumption);
     if (consumption < LOW_EFFICIENCY) {
         printf("Venda o carro!\n");
         
@@ -50,7 +50,6 @@ void show_consumption(float consumption) {
         printf("Super econômico\n");
         
     } else {
-        
         printf("Econômico!\n");
     }
     return;
