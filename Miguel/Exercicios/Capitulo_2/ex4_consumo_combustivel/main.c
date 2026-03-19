@@ -15,8 +15,8 @@ int main() {
     char again = 'n';
     do {
         
-        int kilometers_traveled = ask_kilometers_traveled();
-        int gasoline_liters = ask_gasoline_consumed();
+        float kilometers_traveled = ask_kilometers_traveled();
+        float gasoline_liters = ask_gasoline_consumed();
         
         float average_consumption = calculate_consumption(kilometers_traveled, gasoline_liters);
         show_consumption(average_consumption);
