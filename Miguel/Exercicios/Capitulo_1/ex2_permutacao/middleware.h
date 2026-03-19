@@ -2,6 +2,8 @@
 #define MIDDLEWARE_H
 
 
+void clear_buffer();
+
 char select_var_type();
 
 void char_switcher();
