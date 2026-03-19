@@ -36,8 +36,7 @@ int main() {
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
         printf("Deseja executar novamente? ");
         scanf("%c", &again);
-
-        clean_buffer();
+        clear_buffer();
     } while (again == 's');
 
 

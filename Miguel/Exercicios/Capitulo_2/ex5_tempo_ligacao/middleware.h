@@ -1,6 +1,9 @@
 #include <stdio.h>
 
-void clean_buffer();
+
+const int TIME_FACTOR = 60;
+
+void clear_buffer();
 
 int ask_call_start();
 int ask_call_end();
