@@ -1,6 +1,7 @@
-#ifndef MIDDLEWARE_H
-#define MIDDLEWARE_H
+#include <stdio.h>
 
+
+void clear_buffer();
 
 typedef struct {
     int hour;
@@ -11,6 +12,3 @@ typedef struct {
 int recieve_time();
 
 void readable_time_conversion(int time_in_seconds, ReadableTime *readable_time);
-
-
-#endif
