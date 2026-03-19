@@ -12,22 +12,22 @@
 
 
 int main() {
-
-    char again = 's';
-
+    
+    char again = 'n';
+    
     while (again == 's') {
-
+        
         int clean_input = valid_input();
         int inverted_algarisms = mirror_number(clean_input);
-
-        printf("Generated the inverse of %d: --> %d \n\n", clean_input, inverted_algarisms);
-
-        printf("Do you want to run again? (s/n): ");
-        scanf("%c", &again);
         
-        // clear buffer
-        while(getchar() != '\n');
+        printf("Generated the inverse of %d: --> %d \n\n", clean_input, inverted_algarisms);
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n ): ");
+        scanf("%c", &again);
+        clear_buffer();
+        
     }
-
+    
     return 0;
 }
