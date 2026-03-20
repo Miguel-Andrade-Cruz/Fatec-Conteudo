@@ -12,27 +12,32 @@
 
 
 int main() {
-
+    
     char again = 'n';
     do {
         // signal combination table:
         // "P" --> The two numbers are positive
         // "N" --> The two numbers are negative
         // "F" --> First number is positive an second is negative
-
+        
         char signal_combination;
-        int combination_result;
-
+        float combination_result;
+        
         int num_1 = ask_first_number();
         int num_2 = ask_second_number();
-
-        signal_combination = realize_numbers_signal(num_1, num_2);
+        
+        int signal_1 = show_signal(num_1);
+        int signal_2 = show_signal(num_2);
+        
+        signal_combination = realize_signal_combination(signal_1, signal_2);
         combination_result = execute_combination_operation(signal_combination, num_1, num_2);
-
+        
+        show_result(combination_result);
+        
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar novamente? ");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
-        clean_buffer();
+        clear_buffer();
     } while (again == 's');
     return 0;
 }
