@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdio.h>
 
 
-void clean_buffer();
+void clear_buffer();
 
 int ask_first_number();
 int ask_second_number();
