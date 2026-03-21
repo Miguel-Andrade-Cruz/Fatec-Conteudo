@@ -7,21 +7,21 @@
 
 
 int main() {
-
+    
     char again = 'n';
     do {
-
-        int sum_of_algarisms;
+        
+        int sum_of_alg;
         int num = ask_for_number();
-
-        sum_of_algarisms = sum_number_algarisms(num);
-
-        show_sum_of_algarisms(sum_of_algarisms);
-
+        
+        sum_of_alg = sum_number_algarisms(num);
+        
+        show_sum_of_algarisms(num, sum_of_alg);
+        
         // +-+-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar novamente? ( s / n )");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
-        clean_buffer();
+        clear_buffer();
     } while (again == 's');
     
     return 0;
