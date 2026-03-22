@@ -9,40 +9,34 @@ int main() {
 
     char again = 'n';
     do {
-        int input = 0;
-        
-        // < acc > means "accumulated"
         float acc_sum, acc_subtraction, acc_multiplication, acc_division;
+        float start_value = ask_for_value();
         
-        printf("Insira um número: ");
-        scanf("%d", &input);
-        clean_buffer();
         
-        acc_sum = input; acc_subtraction = input;
-        acc_multiplication = input; acc_division = input;
+        // first attribution
+        // 'acc' means 'accumulated'
+        acc_sum = start_value; acc_subtraction = start_value;
+        acc_multiplication = start_value; acc_division = start_value;
         
         while (1) {
             
-            printf("Insira um número: ");
-            scanf("%d", &input);
-            clean_buffer();
-
-            if ( input == 0 ) {
+            int next_value = ask_for_value();
+            if ( next_value == 0 ) {
                 break;
             }
             
-            acc_sum = add(acc_sum, input);
-            acc_subtraction = subtract(acc_subtraction, input);
-            acc_multiplication = multiply(acc_multiplication, input);
-            acc_division = divide(acc_division, input);
+            acc_sum = add(acc_sum, next_value);
+            acc_subtraction = subtract(acc_subtraction, next_value);
+            acc_multiplication = multiply(acc_multiplication, next_value);
+            acc_division = divide(acc_division, next_value);
         }
         
         show_aritmetics(acc_sum, acc_subtraction, acc_multiplication, acc_division);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar novamente? ( s / n)");
+        printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
-        clean_buffer();
+        clear_buffer();
     } while (again == 's');
     return 0;
 }
