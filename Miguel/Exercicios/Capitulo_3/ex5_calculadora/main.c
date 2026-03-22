@@ -7,22 +7,40 @@
 
 
 int main() {
-
-    const char ADD = '+';
-    const char SUB = '-';
-    const char MULT = '*';
-    const char DIV = '/';
-    
-    const char CONTINUE = '>';
-    const char EQUALS = '=';
     
     char again = 'n';
     do {
         
+        int running = 1;
+        float accumulator, second_operand;
+        char _operator;
+        
+        display_explaining_message();
+        
+        // first expression
+        scanf("%f %c %f", &accumulator, &_operator, &second_operand);
+        clear_buffer();
+        accumulator = resolve_expression(accumulator, _operator, second_operand);
+        display_ans(accumulator);
+        
+        while (running == 1 && second_operand != 0) {
+            
+            scanf("%c %f", &_operator, &second_operand);
+            clear_buffer();
+            
+            if ( _operator == EQUALS) {
+                printf("Operação inválida: divisão por 0\n");
+                break;
+            }
+            
+            accumulator = resolve_expression(accumulator, _operator, second_operand);
+            display_ans(accumulator);
+        }
+        
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        printf("Deseja execurar novamente? ( s / n) ");
+        printf("Deseja execurar novamente? ( s / n )  ");
         scanf("%c", &again);
-        clean_buffer();
+        clear_buffer();
     } while (again == 's');
     return 0;
 }
