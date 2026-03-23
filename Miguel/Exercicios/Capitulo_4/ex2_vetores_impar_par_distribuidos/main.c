@@ -20,7 +20,6 @@ int main() {
             printf("%d -> ", i_num + 1);
             scanf("%d", &input_vec[i_num]);
             clear_buffer();
-            printf("VETOR INPUT INDICE %d : %d\n", i_num, input_vec[i_num]);//
         }
         
         // To split the vectors into evens and odds, evenly
