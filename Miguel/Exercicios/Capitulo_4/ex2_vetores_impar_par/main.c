@@ -7,7 +7,7 @@
 #include "middleware.h"
 
 
-int input_vec[VEC_SIZE], even_vec[VEC_SIZE / 2], odd_vec[VEC_SIZE / 2];
+int input_vec[VEC_SIZE], vec_1[VEC_SIZE / 2], vec_2[VEC_SIZE / 2];
 
 int main() {
 
@@ -23,17 +23,25 @@ int main() {
             printf("VETOR INPUT INDICE %d : %d\n", i_num, input_vec[i_num]);//
         }
         
-        // To split the vector into evens and odds
-        for (int i_even = 0, i_odd = 0, i_ipt = 0; i_ipt < VEC_SIZE; i_ipt++) {
+        // To split the vectors into evens and odds, evenly
+        char turn = 'o';
+        for (int i_ipt = 0, i_vec_1 = 0, i_vec_2 = 0; i_ipt < VEC_SIZE; i_ipt++) {
             
-            if (input_vec[i_ipt] % 2 == 0) {
+            int current_num = input_vec[i_ipt];
+            
+            if (turn == 'o' && current_num % 2 != 0) {
+                vec_1[i_vec_1] = current_num;
+                i_vec_1++;
+                turn = 'e';
                 
-                even_vec[i_even] = input_vec[i_ipt];
-                i_even++;
+            } else if (turn == 'e' && current_num % 2 == 0) {
+                vec_1[i_vec_1] = current_num;
+                i_vec_1++;
+                turn = 'o';
+                
             } else {
-                
-                odd_vec[i_odd] = input_vec[i_ipt];
-                i_odd++;
+                vec_2[i_vec_2] = current_num;
+                i_vec_2++;
             }
         }
         
@@ -43,7 +51,7 @@ int main() {
         printf("{  ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", even_vec[i_num]);
+            printf("%d  ", vec_1[i_num]);
         }
         printf("}");
         
@@ -56,7 +64,7 @@ int main() {
         printf("{  ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", odd_vec[i_num]);
+            printf("%d  ", vec_2[i_num]);
         }
         printf("}");
         

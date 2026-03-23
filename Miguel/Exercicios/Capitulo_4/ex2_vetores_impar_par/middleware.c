@@ -20,31 +20,29 @@ void clear_buffer() {
 // }
 
 
-// void extract_even_nums(int *input, int *returned) {
+// void split_even_odds_evenly(int *input_vec, int *vec_1, int *vec_2) {
     
-//     for (int i_num = 0, i_even = 0; i_num < VEC_SIZE; i_num++) {
+//     // To split the vectors into evens and odds, evenly
+//     char turn = 'o';
+//     for (int i_ipt = 0, i_vec_1 = 0, i_vec_2 = 0; i_ipt < VEC_SIZE; i_ipt++) {
         
-//         if (input[i_num] % 2 == 0) {
+//         int current_num = input_vec[i_ipt];
+        
+//         if (turn == 'o' && current_num % 2 != 0) {
+//             vec_1[i_vec_1] = current_num;
+//             i_vec_1++;
+//             turn = 'e';
             
-//             returned[i_even] = input[i_num];
-//             i_even++;
+//         } else if (turn == 'e' && current_num % 2 == 0) {
+//             vec_1[i_vec_1] = current_num;
+//             i_vec_1++;
+//             turn = 'o';
+            
+//         } else {
+//             vec_2[i_vec_2] = current_num;
+//             i_vec_2++;
 //         }
 //     }
-//     return;
-// }
-
-
-// void extract_odd_nums(int *input, int *returned) {
-    
-//     for (int i_num = 0, i_odd = 0; i_num < VEC_SIZE; i_num++) {
-        
-//         if (input[i_num] % 2 != 0) {
-            
-//             returned[i_odd] = input[i_num];
-//             i_odd++;
-//         }
-//     }
-//     return;
 // }
 
 
