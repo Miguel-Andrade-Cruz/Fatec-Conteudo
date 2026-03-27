@@ -1,20 +1,27 @@
-// 3 - Receba via teclado uma string de comprimento 10 em letras minusculas e converta
-//     todos os caracteres para letras maiusculas. (nao pode usar funcao de biblioteca)
+// 3 - Receba via teclado uma string de comprimento 10 em letras minusculas e
+// converta
+//     todos os caracteres para letras maiusculas. (nao pode usar funcao de
+//     biblioteca)
 
 #include "middleware.h"
 
+#define INNER_MODE
+// #define OUTER_MODE
 
+
+#ifdef OUTER_MODE
 int main() {
-
+    
     char again = 'n';
     do {
         
         char string[STRING_SIZE + 1];
+        
         ask_for_string(string);
-        printf("A string digitada foi: %s", string);
+        show_string(string);
         
         to_uppercase_conversion(string);
-        show_string_change(string);
+        show_string(string);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ( s / n )  ");
@@ -23,3 +30,47 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif
+
+
+#ifdef INNER_MODE
+char string[STRING_SIZE + 1];
+
+int main() {
+    
+  char again = 'n';
+  do {
+        
+        // 'ask_for_string' function
+        printf("Insira uma string (máximo 10 caracteres):  ");
+        scanf("%s", string);
+        clear_buffer();
+        // ------------------------------
+        
+        printf("A string digitada foi: %s\n", string);
+        
+        // 'to_uppercase_conversion' function
+        for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
+            if (string[i_char] == 0x20) {
+                continue;
+            } else if (string[i_char] == '\0') {
+                i_char = STRING_SIZE;
+                
+            } else {
+                string[i_char] -= 0x20;
+            }
+        }
+        // ------------------------------
+        
+        // 'show_string' function
+        printf("Assim ficou a string em caixa alta: %s\n", string);
+        // ------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\n\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif
