@@ -5,15 +5,15 @@
 
 #include "middleware.h"
 // #define DEBUG
-#define INNER_MODE
-// #define OUTER_MODE
+// #define INNER_MODE
+#define OUTER_MODE
 
 char string_one[STRING_SIZE + 1];
 char string_two[STRING_SIZE + 1];
 
 #ifdef OUTER_MODE
 int main() {
-
+    
     char again = 'n';
     do {
         
@@ -35,7 +35,7 @@ int main() {
 
 #ifdef INNER_MODE
 int main() {
-
+    
     char again = 'n';
     do {
         

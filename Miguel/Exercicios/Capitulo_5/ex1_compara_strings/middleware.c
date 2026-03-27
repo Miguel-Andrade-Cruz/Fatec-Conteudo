@@ -42,7 +42,7 @@ int string_comparator(char *str_one, char * str_two) {
     #ifdef DEBUG
     printf("[DEBUG] IS_EQUAL: %d < string_comparator > -[ ln 30 ]-\n", is_equal);
     #endif
-    return is_equal
+    return is_equal;
 }
 
 
