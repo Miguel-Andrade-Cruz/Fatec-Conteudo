@@ -1,6 +1,5 @@
 #include "middleware.h"
 
-
 void clear_buffer() {
     
     while (getchar() != '\n');
@@ -19,17 +18,22 @@ void ask_for_string(char *string) {
 
 void to_lowercase_conversion(char *string) {
     
-    for (int i_char; i_char < STRING_SIZE; i_char++) {
+    for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
         if (string[i_char] == 0x20) {
             continue;
+        } else if (string[i_char] == '\0') {
+            i_char = STRING_SIZE;
+            
+        } else {
+            string[i_char] += 0x20;
         }
-        string[i_char] += 0x20;
     }
     return;
 }
 
-void show_string_change(char *string) {
+
+void show_string(char *string) {
     
-    printf("Assim ficou a string em caixa alta: %s", string);
+    printf("Assim ficou a string em caixa baixa: %s", string);
     return;
 }
