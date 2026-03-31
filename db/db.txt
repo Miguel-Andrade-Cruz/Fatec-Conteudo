@@ -1,0 +1,24 @@
+Table tab_fatos {
+
+  id integer [primary key]
+  plano_conta integer [ref: > tab_plano_contas.id ]
+  descricao str
+  valor integer
+  movimentacao str // 'C' ou 'D'
+}
+
+
+Table tab_plano_contas {
+
+  id integer [primary key]
+  conta str
+  segmento str
+  nicho str
+}
+
+
+Table tab_relacoes {
+
+  id_fato integer [ref: - tab_fatos.id]
+  id_grupo integer
+}
