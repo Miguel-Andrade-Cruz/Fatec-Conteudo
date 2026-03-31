@@ -1,10 +1,22 @@
 #include <stdio.h>
+#include <string.h>
 
 
-int ask_birth_date();
+typedef struct {
+    
+    int day;
+    int month;
+    int year;
+} Date;
 
-int ask_now_date();
+void clear_buffer();
 
-void convert_to_date_format(int total_days, int *day, int *month, int *year);
+Date ask_birth_date();
 
-void show_person_age(int age_day, int age_month, int age_year);
+Date ask_now_date();
+
+Date convert_to_date_format(int date_on_days_format);
+
+Date calculate_age(Date now, Date birth);
+
+void show_person_age(Date age);

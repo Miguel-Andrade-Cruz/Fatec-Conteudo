@@ -3,26 +3,46 @@
 //    data (dia, mes e ano) atual.
 
 #include "middleware.h"
+// #define INNER_MODE
+#define OUTER_MODE
 
 
+#ifdef OUTER_MODE
 int main() {
 
     char again = 'n';
     do {
-        int age_day, age_month, age_year;
-    
-        int birth_date_in_days = ask_birth_date();
-        int now_date_in_days = ask_now_date();
         
-        int person_age_in_days = birth_date_in_days - now_date_in_days;
-        convert_to_date_format(person_age_in_days, &age_day, &age_month, &age_year);
+        Date birth = ask_birth_date();
+        Date now = ask_now_date();
         
-        show_person_age(age_day, age_month, age_year);
+        Date age = calculate_age(now, birth);
+        
+        show_person_age(age);
         
         // +-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar nomvaente? ( s / n)  ");
+        printf("Deseja executar nomvaente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
     } while (again == 's');
     return 0;
 }
+#endif
+
+#ifdef INNER_MODE
+int main() {
+
+    char again = 'n';
+    do {
+        int age_day, age_month, age_year;
+        
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif
