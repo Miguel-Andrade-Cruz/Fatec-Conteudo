@@ -95,6 +95,16 @@ int get_days_since_start_point(int day, int month, int year, int is_leap_year, i
 
 void resolve_weekday(int days_since_start_point, char *weekday){
     
+    // dayofweek(y, m, d) {
+    //     static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+    //     if ( m < 3 ) {
+    //         y -= 1;
+    //     }
+    //     return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+    // }
+    
+    
+    
     const int DAYS_ON_A_WEEK = 7;
     const char DAYS_OF_THE_WEEK[7][8] = {
         "Sábado",
