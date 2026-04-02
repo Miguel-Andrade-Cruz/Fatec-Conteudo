@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Histórico</th>
+        <th>Descrição</th>
+        <th>Movimentação</th>
+        <th>Valor</th>
+    </tr>
+    {% for fact in records %}
+    
+        <tr>
+            <td>
+                {{ fact.date }}
+            </td>
+            <td>
+                {{ fact.history }}
+            </td>
+            <td>
+                {{ fact.description }}
+            </td>
+            <td>
+                {{ fact.flow_direction }}
+            </td>
+            <td>
+                {{ fact.value }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
