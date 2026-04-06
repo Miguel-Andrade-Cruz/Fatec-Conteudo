@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+# from .models import AccPlan, SegmentPlan
+
+# admin.site.register(AccPlan)
+
+# admin.site.register(SegmentPlan)
