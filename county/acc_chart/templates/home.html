@@ -1,0 +1,22 @@
+{% extends base.html %}
+{% block content %}
+
+    {% for acc in acc_chart %}
+
+        <select name="{{ acc[0] }} - {{ acc[1] }}">
+            {% set segms = acc_chart[acc] %}
+
+            {% for segm in segms %}
+                <select name="{{ segm[0] }} - {{ segm[1] }}">
+                    {% set niches = acc[segm] %}
+
+                    {% for niche in niches %}
+                        <option>{{ niche[0] }} - {{ niche[1] }}</option>
+                    {% endfor %}
+
+                </select>
+            {% endfor %}
+
+        </select>
+    {% endfor %}
+{% endblock %}
