@@ -1,0 +1,16 @@
+{% extends 'forms/_base_form.html' %}
+
+{% block ui %}
+    <span style="color:blue; size: 40px;">■</span>
+    <span style="color:blue; size: 40px;">■</span>
+    <span style="color:blue; size: 40px;">■</span>
+{% endblock %}
+
+{% block url %}
+    {% url 'chart:niche_form'%}
+{% endblock %}
+
+
+{% block submit %}
+    Registrar plano de conta
+{% endblock %}

@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-# from .models import AccPlan, SegmentPlan
+from .models import Account, Niche, Segment
 
-# admin.site.register(AccPlan)
+admin.site.register(Account)
 
-# admin.site.register(SegmentPlan)
+admin.site.register(Segment)
+
+admin.site.register(Niche)

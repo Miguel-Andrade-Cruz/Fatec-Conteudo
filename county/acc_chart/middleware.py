@@ -1,4 +1,4 @@
-from .models import Account, Niche, Segment
+from .models import Account, Chart, Segment
 
 
 def group_records(qs):
@@ -24,51 +24,67 @@ def group_records(qs):
 def pull_accounts():
     ACCOUNTS = {"new": "Criar conta"}
 
-    qs = Account.objects.all().values()
-    if qs.exists():
-        ACCOUNTS.update(qs)
+    qs = Account.objects.all().values('code', 'label')
+    if not qs.exists():
+        return ACCOUNTS
+
+    for record in qs:
+        ACCOUNTS.update({record['code']: record['label']})
     return ACCOUNTS
 
 
-def pull_segments():
+def pull_segments(acc_filter):
     SEGMENTS = {"new": "Criar segmento"}
 
-    qs = Segment.objects.all().values()
-    if qs.exists():
-        SEGMENTS.update(qs)
+    if acc_filter["is_new"]:
+        return SEGMENTS
+    else:
+        qs = Chart.objects \
+            .select_related('segm') \
+            .filter(acc=acc_filter["info"]) \
+            .values()
+
+    if not qs.exists():
+        return SEGMENTS
+
+    for record in qs:
+        SEGMENTS.update({record['code']: record['label']})
     return SEGMENTS
 
 
-def pull_niches():
-    NICHES = {"new": "Criar nicho"}
+def get_or_new_acc(data):
 
-    qs = Niche.objects.all().values()
-    if qs.exists():
-        NICHES.update(qs)
-    return NICHES
-
-
-def handle_form_data(data):
-
-    if data["accounts"] == "new":
-        i_account = Account(label=data["new_account"])
-        i_account.save()
-        account_id = i_account.id
+    if data["prev_accounts"] == "new":
+        return (data["new_account"], True)
     else:
-        account_id = data["accounts"]
+        return (data["prev_accounts"], False)
 
-    if data["segments"] == "new":
-        i_segment = Segment(label=data["new_segment"])
-        i_segment.save()
-        segment_id = i_segment.id
+def get_or_new_segm(data):
+
+    if data["prev_segments"] == "new":
+        return (data["new_segment"], True)
     else:
-        segment_id = data["segments"]
+        return (data["prev_segments"], False)
 
-    if data["niches"] == "new":
-        i_niche = Niche(label=data["new_niche"])
-        i_niche.save()
-        niche_id = i_niche.id
-    else:
-        niche_id = data["niches"]
 
-    return (account_id, segment_id, niche_id)
+# def handle_form_data(data):
+
+#     if data["accounts"] == "new":
+#         account = Account(label=data["new_account"])
+#         account.save()
+#     else:
+#         account = Account.objects.get(pk=data["accounts"])
+
+#     if data["segments"] == "new":
+#         segment = Segment(label=data["new_segment"])
+#         segment.save()
+#     else:
+#         segment = Segment.objects.get(pk=data["segments"])
+
+#     if data["niches"] == "new":
+#         niche = Niche(label=data["new_niche"])
+#         niche.save()
+#     else:
+#         niche = Niche.objects.get(pk=data["niches"])
+
+#     return (account, segment, niche)

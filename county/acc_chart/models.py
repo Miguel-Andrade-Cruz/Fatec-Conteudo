@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Account(models.Model):
+    code = models.CharField(max_length=1)
     label = models.CharField(max_length=50)
 
     def __str__(self):
@@ -9,6 +10,7 @@ class Account(models.Model):
 
 
 class Segment(models.Model):
+    code = models.CharField(max_length=1)
     label = models.CharField(max_length=50)
 
     def __str__(self):
@@ -16,6 +18,7 @@ class Segment(models.Model):
 
 
 class Niche(models.Model):
+    code = models.CharField(max_length=1)
     label = models.CharField(max_length=50)
 
     def __str__(self):

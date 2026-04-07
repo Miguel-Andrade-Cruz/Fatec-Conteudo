@@ -1,0 +1,15 @@
+{% extends 'forms/_base_form.html' %}
+
+{% block ui %}
+    <span style="color:blue; size: 40px;">■</span>
+    <span style="color:gray; size: 40px;">■</span>
+    <span style="color:gray; size: 40px;">■</span>
+{% endblock %}
+
+{% block url %}
+    {% url 'chart:acc_form' %}
+{% endblock %}
+
+{% block submit %}
+    Selecionar segmento
+{% endblock %}
