@@ -256,11 +256,11 @@ void __2_lista_dados() {
     // ----- ]
     
     // list all the data ----- [
-    printf("   JOGO           PRODUTORA\n");
-    printf("---------------------\n");
-    printf("  %s      %s\n", nome_jogo_1, produtora_1);
-    printf("  %s      %s\n", nome_jogo_2, produtora_2);
-    printf("  %s      %s\n", nome_jogo_3, produtora_3);
+    printf("         JOGO            |            PRODUTORA            \n");
+    printf("-----------------------------------------------------------\n");
+    printf("  %-26s      %-26s\n", nome_jogo_1, produtora_1);
+    printf("  %-26s      %-26s\n", nome_jogo_2, produtora_2);
+    printf("  %-26s      %-26s\n", nome_jogo_3, produtora_3);
     // ----- ]
     return;
 }
@@ -350,87 +350,177 @@ void __5_alterar_dados() {
     read_data_handler();
     // --- ]
     
-    // request search string --- [
+    // search loop for data ----- [
+    int
+        equal_to_game_1 = 0,
+        equal_to_game_2 = 0,
+        equal_to_game_3 = 0
+    ;
     
-    printf("Digite o nome do jogo:  ");
-    scanf("%[^\n]s", search);
-    clear_buffer();
-    // --- ]
+    int
+        chars_matched_1 ,
+        chars_matched_2 ,
+        chars_matched_3
+    ;
     
-    // evaluate search match ---- [
-    int chars_matched_1 = 0;
-    int chars_matched_2 = 0;
-    int chars_matched_3 = 0;
+    printf("=====================================================\n");
+    printf("Importante: Caso insira um jogo\n");
+    printf("inexistente, será pedido para\n");
+    printf("inerir novamente.\n");
+    printf(" =====================================================\n");
     
-    int i = 0, search_size = 0;
-    while (search[search_size] != '\0') {
+    do {
+        // request search string --- [
+        printf("Digite o nome do jogo:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        // --- ]
         
-        int is_equal_1 = search[i] == nome_jogo_1[i];
-        int is_equal_2 = search[i] == nome_jogo_2[i];
-        int is_equal_3 = search[i] == nome_jogo_3[i];
         
-        chars_matched_1 += (is_equal_1 == 1) ? 1 : 0;
-        chars_matched_2 += (is_equal_2 == 1) ? 1 : 0;
-        chars_matched_3 += (is_equal_3 == 1) ? 1 : 0;
+        // evaluate search match ---- [
+        chars_matched_1 = 
+        chars_matched_2 = 
+        chars_matched_3 = 0;
         
-        search_size++, i++;
-    }
-    // -------------- ]
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            int is_equal_1 = search[i] == nome_jogo_1[i];
+            int is_equal_2 = search[i] == nome_jogo_2[i];
+            int is_equal_3 = search[i] == nome_jogo_3[i];
+            
+            chars_matched_1 += is_equal_1;
+            chars_matched_2 += is_equal_2;
+            chars_matched_3 += is_equal_3;
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        // -------------- ]
+    } while (!equal_to_game_1 && !equal_to_game_2 && !equal_to_game_3);
+    // ----- ]
     
     // mark field to edit ----- [
     char to_alter;
-    if (chars_matched_1 == search_size) {
+    if (equal_to_game_1) {
         to_alter = '1';
-    } else if (chars_matched_2 == search_size) {
+    } else if (equal_to_game_2) {
         to_alter = '2';
         
-    } else if (chars_matched_3 == search_size) {
+    } else if (equal_to_game_3) {
         to_alter = '3';
         
     } else {
         
         printf("Nenehum jogo encontrado.\n");
-        return;
     }
     // ---------- ]
+
+    
     
     // request new input ------------- [
-    char new_game[21];
+    printf("=====================================================\n");
+    printf("Importante: Não é possível inserir\n");
+    printf("o mesmo jogo duas vezes. Caso a tentativa ocorra,\n");
+    printf("será pedido par inerir novamente.\n");
+    printf(" =====================================================\n");
+    
     printf("Insira o novo nome do jogo:  ");
-    scanf("%[^\n]s", new_game);
+    scanf("%[^\n]s", search);
     clear_buffer();
     
-    char new_studio[21];
-    printf("Insira a nova produtora:  ");
-    scanf("%[^\n]s", new_studio);
-    clear_buffer();
-    // ------------- ]
+    // Check if the inputed already exists on databse ----- [
+    do {
+        
+        // Reset matched chars ----- [
+        chars_matched_1 =
+        chars_matched_2 =
+        chars_matched_3 = 0;
+        // ----- ]
+        
+        printf("JOGO:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        
+        // evaluate search match ----- [
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            // Condition returns an integer, wich will be summed
+            chars_matched_1 += (search[i] == nome_jogo_1[i]);
+            chars_matched_2 += (search[i] == nome_jogo_2[i]);
+            chars_matched_3 += (search[i] == nome_jogo_3[i]);
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        //  ----- ]
+        
+    } while (
+        equal_to_game_1 || equal_to_game_2 || equal_to_game_3
+    );
+    //  ----- ]
+    
+    
     
     // make edit ------------- [
     switch (to_alter) {
         
         case '1':
             for (int char_i = 0; char_i < 21; char_i++) {
-                nome_jogo_1[char_i] = new_game[char_i];
-                produtora_1[char_i] = new_studio[char_i];
+                nome_jogo_1[char_i] = search[char_i];
             }
             break;
         
         case '2':
             for (int char_i = 0; char_i < 21; char_i++) {
-                nome_jogo_2[char_i] = new_game[char_i];
-                produtora_2[char_i] = new_studio[char_i];
+                nome_jogo_2[char_i] = search[char_i];
             }
             break;
         
         case '3':
             for (int char_i = 0; char_i < 21; char_i++) {
-                nome_jogo_3[char_i] = new_game[char_i];
-                produtora_3[char_i] = new_studio[char_i];
+                nome_jogo_3[char_i] = search[char_i];
+            }
+            break;
+    }
+    // ------------- ]
+    
+    // request user input ----- [
+    printf("Insira a nova produtora:  ");
+    scanf("%[^\n]s", search);
+    clear_buffer();
+    // ----- ]
+    
+    // make edit ------------- [
+    switch (to_alter) {
+        
+        case '1':
+            for (int char_i = 0; char_i < 21; char_i++) {
+                produtora_1[char_i] = search[char_i];
+            }
+            break;
+        
+        case '2':
+            for (int char_i = 0; char_i < 21; char_i++) {
+                produtora_2[char_i] = search[char_i];
+            }
+            break;
+        
+        case '3':
+            for (int char_i = 0; char_i < 21; char_i++) {
+                produtora_3[char_i] = search[char_i];
             }
             break;
     }
      // ------------- ]
+    
     
     // write back to db --- [
     write_data_handler();
@@ -452,33 +542,68 @@ void __6_exculir_dados() {
     clear_buffer();
     // ----- ]
     
-    // evaluate search match ----- [
-    int chars_matched_1 = 0;
-    int chars_matched_2 = 0;
-    int chars_matched_3 = 0;
+    // search loop for data ----- [
+    int
+        equal_to_game_1 = 0,
+        equal_to_game_2 = 0,
+        equal_to_game_3 = 0
+    ;
     
-    int i = 0, search_size = 0;
-    while (search[search_size] != '\0') {
+    int
+        chars_matched_1 ,
+        chars_matched_2 ,
+        chars_matched_3
+    ;
+    
+    printf("=====================================================\n");
+    printf("Importante: Caso insira um jogo\n");
+    printf("inexistente, será pedido para\n");
+    printf("inerir novamente.\n");
+    printf(" =====================================================\n");
+    
+    do {
+        // request search string --- [
+        printf("Digite o nome do jogo:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        // --- ]
         
-        int is_equal_1 = search[i] == nome_jogo_1[i];
-        int is_equal_2 = search[i] == nome_jogo_2[i];
-        int is_equal_3 = search[i] == nome_jogo_3[i];
         
-        chars_matched_1 += (is_equal_1 == 1) ? 1 : 0;
-        chars_matched_2 += (is_equal_2 == 1) ? 1 : 0;
-        chars_matched_3 += (is_equal_3 == 1) ? 1 : 0;
+        // evaluate search match ---- [
+        chars_matched_1 = 
+        chars_matched_2 = 
+        chars_matched_3 = 0;
         
-        search_size++, i++;
-    }    // ----- ]
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            int is_equal_1 = search[i] == nome_jogo_1[i];
+            int is_equal_2 = search[i] == nome_jogo_2[i];
+            int is_equal_3 = search[i] == nome_jogo_3[i];
+            
+            chars_matched_1 += is_equal_1;
+            chars_matched_2 += is_equal_2;
+            chars_matched_3 += is_equal_3;
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        // -------------- ]
+    } while (!equal_to_game_1 && !equal_to_game_2 && !equal_to_game_3);
+    // ----- ]
+    
     
     // mark field to delete --- [
     char to_delete;
-    if (chars_matched_1 == search_size) {
+    if (equal_to_game_1) {
         to_delete = '1';
-    } else if (chars_matched_2 == search_size) {
+    } else if (equal_to_game_2) {
         to_delete = '2';
         
-    } else if (chars_matched_3 == search_size) {
+    } else if (equal_to_game_3) {
         to_delete = '3';
         
     } else {
