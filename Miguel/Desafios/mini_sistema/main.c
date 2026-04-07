@@ -24,13 +24,13 @@ void write_data_handler() {
     
     fwrite(produtora_1, sizeof(produtora_1), 1, fptr);
     fwrite(splitter, sizeof(splitter), 1, fptr);
-
+    
     fwrite(nome_jogo_2, sizeof(nome_jogo_2), 1, fptr);
     fwrite(splitter, sizeof(splitter), 1, fptr);
     
     fwrite(produtora_2, sizeof(produtora_2), 1, fptr);
     fwrite(splitter, sizeof(splitter), 1, fptr);
-
+    
     fwrite(nome_jogo_3, sizeof(nome_jogo_3), 1, fptr);
     fwrite(splitter, sizeof(splitter), 1, fptr);
     
@@ -74,6 +74,7 @@ void read_data_handler() {
 
 void __1_entrada_dados() {
     
+    // insert data ----- [
     printf("JOGO:  ");
     scanf("%s", nome_jogo_1);
     clear_buffer();
@@ -99,38 +100,44 @@ void __1_entrada_dados() {
     clear_buffer();
     
     write_data_handler();
+    // ----- ]
     return;
 }
 
 
 void __2_lista_dados() {
     
+    // load data to memory ----- [
     read_data_handler();
+    // ----- ]
     
+    // list all the data ----- [
     printf("   JOGO           PRODUTORA\n");
     printf("---------------------\n");
     printf("  %s      %s\n", nome_jogo_1, produtora_1);
     printf("  %s      %s\n", nome_jogo_2, produtora_2);
     printf("  %s      %s\n", nome_jogo_3, produtora_3);
-    
+    // ----- ]
     return;
 }
 
 
 void __3_pesquisar_jogo() {
     
-    // load data to memory
+    // load data to memory ----- [
     read_data_handler();
+    // ----- ]
     
-    // request search string
+    // request search string ----- [
     char search[21];
     printf("Digite o nome do jogo:  ");
-
+    
     // gets(search);
     // scanf("%s", search);
     clear_buffer();
+    // ----- ]
     
-    // evaluate search match
+    // evaluate search match ----- [
     int chars_matched_1 = 0;
     int chars_matched_2 = 0;
     int chars_matched_3 = 0;
@@ -155,48 +162,57 @@ void __3_pesquisar_jogo() {
     } else {
         printf("Nenehum jogo foi encontrado.\n");
     }
+    // ----- ]
     return;
 }
 
 
 void __4_pesquisar_produtora() {
     
+    // pull data to memory --- [
     read_data_handler();
+    // --- ]
     
+    // request search string --- [
     char ft_letter_search;
     printf("Digite o nome da produtora (primeira letra):  ");
     scanf("%c", &ft_letter_search);
     clear_buffer();
+    // --- ]
     
+    // evaluate search match ---- [
     if (ft_letter_search == produtora_1[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_1, produtora_1);
-    
+        
     } else if (ft_letter_search == produtora_2[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_2, produtora_2);
-    
+        
     } else if (ft_letter_search == produtora_3[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_3, produtora_3);
-    
+        
     } else {
         
         printf("Nenhuma produtora encontrada.\n");
     }
+    // --- ]
     return;
 }
 
 
 void __5_alterar_dados() {
     
-    // pull data to memory
+    // pull data to memory --- [
     read_data_handler();
+    // --- ]
     
-    // request search string
+    // request search string --- [
     char search[21];
     printf("Digite o nome do jogo:  ");
     scanf("%s", search);
     clear_buffer();
+    // --- ]
     
-    // evaluate search match
+    // evaluate search match ---- [
     int chars_matched_1 = 0;
     int chars_matched_2 = 0;
     int chars_matched_3 = 0;
@@ -210,7 +226,9 @@ void __5_alterar_dados() {
         chars_matched_2 += (is_equal_2 == 1) ? 1 : 0;
         chars_matched_3 += (is_equal_3 == 1) ? 1 : 0;
     }
+    // -------------- ]
     
+    // mark field to edit ----- [
     char to_alter;
     if (chars_matched_1 == 20) {
         to_alter = '1';
@@ -225,8 +243,9 @@ void __5_alterar_dados() {
         printf("Nenehum jogo encontrado.\n");
         return;
     }
+    // ---------- ]
     
-    // request new input
+    // request new input ------------- [
     char new_game[21];
     printf("Insira o novo nome do jogo:  ");
     scanf("%s", new_game);
@@ -236,8 +255,9 @@ void __5_alterar_dados() {
     printf("Insira a nova produtora:  ");
     scanf("%s", new_studio);
     clear_buffer();
+    // ------------- ]
     
-    // make edit
+    // make edit ------------- [
     switch (to_alter) {
         
         case '1':
@@ -246,14 +266,14 @@ void __5_alterar_dados() {
                 produtora_1[char_i] = new_studio[char_i];
             }
             break;
-            
+        
         case '2':
             for (int char_i = 0; char_i < 21; char_i++) {
                 nome_jogo_2[char_i] = new_game[char_i];
                 produtora_2[char_i] = new_studio[char_i];
             }
             break;
-            
+        
         case '3':
             for (int char_i = 0; char_i < 21; char_i++) {
                 nome_jogo_3[char_i] = new_game[char_i];
@@ -261,25 +281,29 @@ void __5_alterar_dados() {
             }
             break;
     }
-    
-    // write back to db
+     // ------------- ]
+
+    // write back to db --- [
     write_data_handler();
+    // ----- ]
     return;
 }
 
 
 void __6_exculir_dados() {
     
-    // pull data to memory
+    // pull data to memory ----- [
     read_data_handler();
+    // ----- ]
     
-    // request serach string
+    // request serach string ----- [
     char search[21];
     printf("Digite o nome do jogo:  ");
     scanf("%s", search);
     clear_buffer();
+    // ----- ]
     
-    // evaluate search match
+    // evaluate search match ----- [
     int chars_matched_1 = 0;
     int chars_matched_2 = 0;
     int chars_matched_3 = 0;
@@ -293,40 +317,48 @@ void __6_exculir_dados() {
         chars_matched_2 += (is_equal_2 == 1) ? 1 : 0;
         chars_matched_3 += (is_equal_3 == 1) ? 1 : 0;
     }
+    // ----- ]
     
-    char to_alter;
+    // mark field to delete --- [
+    char to_delete;
     if (chars_matched_1 == 20) {
-        to_alter = '1';
+        to_delete = '1';
     } else if (chars_matched_2 == 20) {
-        to_alter = '2';
+        to_delete = '2';
         
     } else if (chars_matched_3 == 20) {
-        to_alter = '3';
+        to_delete = '3';
         
     } else {
         
         printf("Nenehum jogo encontrado.\n");
         return;
     }
+    // ----- ]
     
-    // exclude selected data
-    switch (to_alter) {
+    // exclude selected data --- [
+    switch (to_delete) {
         
         case '1':
             nome_jogo_1[0] = '^';
             produtora_1[0] = '^';
             break;
-            
+        
         case '2':
             nome_jogo_2[0] = '^';
             produtora_2[0] = '^';
-            
+            break;
+        
         case '3':
             nome_jogo_3[0] = '^';
             produtora_3[0] = '^';
             break;
     }
+    // ----- ]
+
+    // write back to db --- [
     write_data_handler();
+    // ----- ]
     return;
 }
 
@@ -380,7 +412,7 @@ int main() {
             case '7':
                 __7_sair();
         }
-        
+    
     } while (again == 's');
     return 0;
 }
