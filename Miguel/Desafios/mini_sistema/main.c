@@ -2,8 +2,19 @@
 
 char again = 's';
 
-char nome_jogo_1[21], nome_jogo_2[21], nome_jogo_3[21];
-char produtora_1[21], produtora_2[21], produtora_3[21];
+char
+    nome_jogo_1[21] ,
+    nome_jogo_2[21] ,
+    nome_jogo_3[21]
+;
+
+char
+    produtora_1[21] ,
+    produtora_2[21] ,
+    produtora_3[21]
+;
+
+char search[21];
 
 void clear_buffer() {
     
@@ -74,27 +85,160 @@ void read_data_handler() {
 
 void __1_entrada_dados() {
     
+    // load data to memory ----- [
+    read_data_handler();
+    // ----- ]
     // insert data ----- [
-    printf("JOGO:  ");
-    scanf("%[^\n]s", nome_jogo_1);
-    clear_buffer();
+    int
+        equal_to_game_1 ,
+        equal_to_game_2 ,
+        equal_to_game_3
+    ;
     
+    int
+        chars_matched_1 ,
+        chars_matched_2 ,
+        chars_matched_3
+    ;
+    
+
+    
+    // Check if the inputed already exists on databse ----- [
+    printf("=====================================================\n");
+    printf("Importante: Não é possível inserir\n");
+    printf("o mesmo jogo duas vezes. Caso a tentativa ocorra,\n");
+    printf("será pedido par inerir novamente.\n");
+    printf(" =====================================================\n");
+    do {
+        
+        // Reset matched chars ----- [
+        chars_matched_1 =
+        chars_matched_2 =
+        chars_matched_3 = 0;
+        // ----- ]
+        
+        printf("JOGO:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        
+        // evaluate search match ----- [
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            // Condition returns an integer, wich will be summed
+            chars_matched_1 += (search[i] == nome_jogo_1[i]);
+            chars_matched_2 += (search[i] == nome_jogo_2[i]);
+            chars_matched_3 += (search[i] == nome_jogo_3[i]);
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        //  ----- ]
+        
+    } while (
+        equal_to_game_1 || equal_to_game_2 || equal_to_game_3
+    );
+    //  ----- ]
+    
+    
+    for (int i = 0; i < 21; i++) {
+        nome_jogo_1[i] = search[i];
+    }
     printf("PRODUTORA:  ");
     scanf("%[^\n]s", produtora_1);
     clear_buffer();
     
-    printf("JOGO:  ");
-    scanf("%[^\n]s", nome_jogo_2);
-    clear_buffer();
     
+    
+    // Check if the inputed already exists on databse ----- [
+    do {
+        
+        // Reset matched chars ----- [
+        chars_matched_1 =
+        chars_matched_2 =
+        chars_matched_3 = 0;
+        // ----- ]
+        
+        printf("JOGO:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        
+        // evaluate search match ----- [
+        
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            // Condition returns an integer, wich will be summed
+            chars_matched_1 += (search[i] == nome_jogo_1[i]);
+            chars_matched_2 += (search[i] == nome_jogo_2[i]);
+            chars_matched_3 += (search[i] == nome_jogo_3[i]);
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        //  ----- ]
+        
+    } while (
+        equal_to_game_1 || equal_to_game_2 || equal_to_game_3
+    );
+    //  ----- ]
+    
+    
+    for (int i = 0; i < 21; i++) {
+        nome_jogo_2[i] = search[i];
+    }
     printf("PRODUTORA:  ");
     scanf("%[^\n]s", produtora_2);
     clear_buffer();
     
-    printf("JOGO:  ");
-    scanf("%[^\n]s", nome_jogo_3);
-    clear_buffer();
     
+    
+    // Check if the inputed already exists on databse ----- [
+    do {
+        
+        // Reset matched chars ----- [
+        chars_matched_1 =
+        chars_matched_2 =
+        chars_matched_3 = 0;
+        // ----- ]
+        
+        printf("JOGO:  ");
+        scanf("%[^\n]s", search);
+        clear_buffer();
+        
+        // evaluate search match ----- [
+        
+        int i = 0, search_size = 0;
+        while (search[search_size] != '\0') {
+            
+            // Condition returns an integer, wich will be summed
+            chars_matched_1 += (search[i] == nome_jogo_1[i]);
+            chars_matched_2 += (search[i] == nome_jogo_2[i]);
+            chars_matched_3 += (search[i] == nome_jogo_3[i]);
+            
+            search_size++, i++;
+        }
+        
+        equal_to_game_1 = (chars_matched_1 == search_size);
+        equal_to_game_2 = (chars_matched_2 == search_size);
+        equal_to_game_3 = (chars_matched_3 == search_size);
+        //  ----- ]
+        
+    } while (
+        equal_to_game_1 || equal_to_game_2 || equal_to_game_3
+    );
+    //  ----- ]
+    
+    
+    for (int i = 0; i < 21; i++) {
+        nome_jogo_3[i] = search[i];
+    }
     printf("PRODUTORA:  ");
     scanf("%[^\n]s", produtora_3);
     clear_buffer();
@@ -129,7 +273,7 @@ void __3_pesquisar_jogo() {
     // ----- ]
     
     // request search string ----- [
-    char search[21];
+    
     printf("Digite o nome do jogo:  ");
     scanf("%[^\n]s", search);
     clear_buffer();
@@ -207,7 +351,7 @@ void __5_alterar_dados() {
     // --- ]
     
     // request search string --- [
-    char search[21];
+    
     printf("Digite o nome do jogo:  ");
     scanf("%[^\n]s", search);
     clear_buffer();
@@ -302,7 +446,7 @@ void __6_exculir_dados() {
     // ----- ]
     
     // request serach string ----- [
-    char search[21];
+    
     printf("Digite o nome do jogo:  ");
     scanf("%[^\n]s", search);
     clear_buffer();
