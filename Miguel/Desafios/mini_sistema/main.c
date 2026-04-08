@@ -258,9 +258,15 @@ void __2_lista_dados() {
     // list all the data ----- [
     printf("         JOGO            |            PRODUTORA            \n");
     printf("-----------------------------------------------------------\n");
-    printf("  %-26s      %-26s\n", nome_jogo_1, produtora_1);
-    printf("  %-26s      %-26s\n", nome_jogo_2, produtora_2);
-    printf("  %-26s      %-26s\n", nome_jogo_3, produtora_3);
+    if (nome_jogo_1[0] != '^') {
+        printf("  %-26s      %-26s\n", nome_jogo_1, produtora_1);
+    }
+    if (nome_jogo_2[0] != '^') {
+        printf("  %-26s      %-26s\n", nome_jogo_2, produtora_2);
+    }
+    if (nome_jogo_3[0] != '^') {
+        printf("  %-26s      %-26s\n", nome_jogo_3, produtora_3);
+    }
     // ----- ]
     return;
 }
@@ -329,10 +335,12 @@ void __4_pesquisar_produtora() {
     if (ft_letter_search == produtora_1[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_1, produtora_1);
         
-    } else if (ft_letter_search == produtora_2[0]) {
+    }
+    if (ft_letter_search == produtora_2[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_2, produtora_2);
         
-    } else if (ft_letter_search == produtora_3[0]) {
+    }
+    if (ft_letter_search == produtora_3[0]) {
         printf("Jogo: %s  |  Produtora: %s\n", nome_jogo_3, produtora_3);
         
     } else {
@@ -427,10 +435,6 @@ void __5_alterar_dados() {
     printf("o mesmo jogo duas vezes. Caso a tentativa ocorra,\n");
     printf("será pedido par inerir novamente.\n");
     printf(" =====================================================\n");
-    
-    printf("Insira o novo nome do jogo:  ");
-    scanf("%[^\n]s", search);
-    clear_buffer();
     
     // Check if the inputed already exists on databse ----- [
     do {
@@ -535,12 +539,6 @@ void __6_exculir_dados() {
     read_data_handler();
     // ----- ]
     
-    // request serach string ----- [
-    
-    printf("Digite o nome do jogo:  ");
-    scanf("%[^\n]s", search);
-    clear_buffer();
-    // ----- ]
     
     // search loop for data ----- [
     int
