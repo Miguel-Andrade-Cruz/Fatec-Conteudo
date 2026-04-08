@@ -11,9 +11,11 @@ void ask_for_two_numbers(float *num_1, float *num_2) {
     
     printf("Insira o primeiro número:  ");
     scanf("%f", num_1);
+    clear_buffer();
     
     printf("Insira o segundo número:  ");
     scanf("%f", num_1);
+    clear_buffer();
     return;
 }
 
