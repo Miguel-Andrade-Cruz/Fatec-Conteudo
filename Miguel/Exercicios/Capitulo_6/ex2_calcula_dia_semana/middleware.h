@@ -3,14 +3,18 @@
 
 void clear_buffer();
 
-void ask_date(int *day, int *month, int *year);
 
-int leap_year_check(int year);
+typedef struct {
+    
+    int day;
+    int month;
+    int year;
+} Date;
 
-int calculate_total_leap_years(int year);
 
-int get_days_since_start_point(int day, int month, int year, int is_leap_year, int total_leap_years);
 
-void resolve_weekday(int days_since_start_point, char *weekday);
+void ask_date(Date *date);
 
-void show_weekday_date(int day, int month, int year, char *weekday);
+void resolve_weekday(Date date, char *weekday);
+
+void show_weekday_date(Date date, char *weekday);
