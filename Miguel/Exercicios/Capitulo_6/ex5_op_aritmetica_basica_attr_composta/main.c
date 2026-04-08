@@ -2,10 +2,12 @@
 //    composta.
 
 #include "middleware.h"
+// #define INNER_MODE
+#define OUTER_MODE
 
-
+#ifdef INNER_MODE
 int main() {
-
+    
     char again = 'n';
     do {
         // 'acc' stands for 'accumulate'
@@ -24,3 +26,28 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // INNER_MODE
+
+
+
+
+#ifdef OUTER_MODE
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    
+    
+    return 0;
+}
+
+#endif // OUTER_MODE
