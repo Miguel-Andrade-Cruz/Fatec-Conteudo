@@ -21,6 +21,7 @@ int main() {
         print_bitwise_or(num_1, num_2);
         print_bitwise_xor(num_1, num_2);
         
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("Deseja executar novamente? ( s / n )  ");
         scanf("%c", &again);
         clear_buffer();
