@@ -56,7 +56,7 @@ void show_weekday_date(Date date, char *weekday) {
         strcpy(article, "um");
     }
     printf(
-        "O dia %d/%d/%d foi %s %s\n",
+        "O dia %.2d/%.2d/%.4d foi %s %s\n",
         date.day, date.month, date.year, article, weekday
     );
     return;
