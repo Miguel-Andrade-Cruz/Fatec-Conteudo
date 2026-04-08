@@ -5,9 +5,11 @@
 //    as operacoes logicas bit a bit AND, OU, OU EXCLUSIVO e imprima-os no
 //    video no formato decimal e hexadecimal.
 
+// #define OUTER_MODE
+#define INNER_MODE
 
+#ifdef OUTER_MODE
 #include "middleware.h"
-
 int main() {
 
     char again = 'n';
@@ -25,3 +27,30 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // OUTER_MODE
+
+
+
+#ifdef INNER_MODE
+#include <stdio.h>
+void clear_buffer() {
+    
+    while(getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 's';
+    do {
+        
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // INNER_MODE
