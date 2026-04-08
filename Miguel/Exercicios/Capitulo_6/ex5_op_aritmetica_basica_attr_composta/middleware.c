@@ -12,6 +12,7 @@ void ask_for_two_numbers(float *acc_num, float *num) {
     printf("Digite o primeiro número:  ");
     scanf("%f", acc_num);
     
+    
     printf("Digite o segundo número:  ");
     scanf("%f", acc_num);
     return;
