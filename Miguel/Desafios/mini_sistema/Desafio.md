@@ -31,8 +31,8 @@ mostra todos os dados na tela
 5 – altera todos os dados. Pesquisa pelo nome_jogo
 completo.
 
-6 – exclui dados. <span class="mark">Pesquisa pelo nome_jogo
-completo</span>.
+6 – exclui dados. Pesquisa pelo nome_jogo
+completo.
 
 7 - saída
 
@@ -49,23 +49,23 @@ Portanto não pode ter 2 nome_jogo iguais.
 
 As produtoras estão ligadas ao nome_jogo sequencialmente.
 
-<span class="mark">Desafio entrega dia 16/04/2026</span>
+Desafio entrega dia 16/04/2026
 
-<span class="mark">Assunto: DF01N</span>
+Assunto: DF01N
 
-<span class="mark">email: lingprog7f@gmail.com</span>
+email: lingprog7f@gmail.com
 
-<span class="mark">Nome do arquivo:</span> Cnumero do grupo e os nomes
+Nome do arquivo: Cnumero do grupo e os nomes
 dos alunos
 
-<span class="mark">Exercícios entrega dia 16/04/2026</span>
+Exercícios entrega dia 16/04/2026
 
-<span class="mark">Assunto: EX01N</span>
+Assunto: EX01N
 
-<span class="mark">email: lingprog7f@gmail.com</span>
+email: lingprog7f@gmail.com
 
-<span class="mark">Corpo do email: Cnumero do grupo e os nomes dos
-alunos</span>
+Corpo do email: Cnumero do grupo e os nomes dos
+alunos
 
-<span class="mark">Nome dos arquivos: cap1 Cnumero do grupo e os nomes
-dos alunos.c, cap2.c, cap3.c, cap4.c, cap5.c, cap6.c</span>
+Nome dos arquivos: cap1 Cnumero do grupo e os nomes
+dos alunos.c, cap2.c, cap3.c, cap4.c, cap5.c, cap6.c
