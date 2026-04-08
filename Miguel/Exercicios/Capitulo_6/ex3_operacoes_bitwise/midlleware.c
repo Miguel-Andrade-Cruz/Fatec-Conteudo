@@ -12,10 +12,11 @@ void ask_for_two_numbers(int *num_1, int *num_2) {
     
     printf("Insira o primeiro número:  ");
     scanf("%d", num_1);
+    clear_buffer();
     
     printf("Insira o segundo número:  ");
     scanf("%d", num_2);
-    
+    clear_buffer();
     return;
 }
 
