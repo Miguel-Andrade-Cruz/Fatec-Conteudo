@@ -10,7 +10,7 @@ void clear_buffer() {
 void ask_for_string(char *string) {
     
     printf("Insira uma string (máximo 10 caracteres):  ");
-    scanf("%s", string);
+    scanf("%[^\n]s", string);
     clear_buffer();
     return;
 }

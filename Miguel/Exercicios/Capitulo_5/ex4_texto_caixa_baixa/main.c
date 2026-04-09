@@ -50,7 +50,7 @@ int main() {
         
         // 'ask_for_string' function
         printf("Insira uma string (máximo 10 caracteres):  ");
-        scanf("%s", string);
+        scanf("%[^\n]s", string);
         clear_buffer();
         // ---------------------------------
         
