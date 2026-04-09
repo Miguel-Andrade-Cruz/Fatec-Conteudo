@@ -3,15 +3,17 @@
 //     DIFERENTES 0 para a funcao main(). Imprima o resultado na funcao main().
 //     (Declare os vetores como variavel global) (nao pode usar funcao de biblioteca)
 
+#define INNER_MODE
+// #define OUTER_MODE
+
+
+
+#ifdef OUTER_MODE
 #include "middleware.h"
-// #define DEBUG
-// #define INNER_MODE
-#define OUTER_MODE
 
 char string_one[STRING_SIZE + 1];
 char string_two[STRING_SIZE + 1];
 
-#ifdef OUTER_MODE
 int main() {
     
     char again = 'n';
@@ -30,10 +32,22 @@ int main() {
     
     return 0;
 }
-#endif
+#endif // OUTER_MODE
 
 
 #ifdef INNER_MODE
+
+#include <stdio.h>
+#define STRING_SIZE 10
+
+char string_one[STRING_SIZE + 1], string_two[STRING_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
 int main() {
     
     char again = 'n';
@@ -47,11 +61,6 @@ int main() {
         printf("Insira a segunda string (máximo 10 carcteres):  ");
         scanf("%s", string_two);
         clear_buffer();
-        
-        #ifdef DEBUG
-        printf("[DEBUG] FIRST STRING: %s\n", string_one);
-        printf("[DEBUG] SECOND STRING: %s\n", string_two);
-        #endif
         // -----------------------------------------
         
         
@@ -64,12 +73,11 @@ int main() {
             }
         }
         int is_equal = equal_chars_qtd == STRING_SIZE;
-        printf("[DEBUG] IS_EQUAL: %d\n", is_equal);
         // -----------------------------------------
         
         
         // 'show_comparison_result' function
-        if (is_equal == 1) {
+        if (is_equal) {
         printf("As duas strings são iguais\n");
         } else {
             printf("Há diferenças entre as strings\n");
@@ -83,4 +91,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#endif
+#endif // INNER_MODE
