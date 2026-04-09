@@ -8,23 +8,27 @@
 //                nome2               nome4
 //                          nome3
 
-#define INNER_MODE
-// #define OUTER_MODE
+// #define INNER_MODE
+#define OUTER_MODE
 
 
 
 #ifdef OUTER_MODE
 #include "middleware.h"
 int main() {
-
+    
     char again = 'n';
     do {
-    
+        
+        char str_1[7], str_2[7], str_3[7], str_4[7], str_5[7];
+        
         int one_through_zero = 1234567890;
         int TEN = 10, TWENTY = 20, THIRTY = 30, FORTY = 40, FIFTY = 50;
-
-        printf("Insira cinco strings, de até 7 caracteres:\n");
-        ask_for_strings(str_1, str_2, str_3, str_4, str_5);
+        
+        ask_for_strings(
+            "Insira cinco strings, de até 7 caracteres:",
+            str_1, str_2, str_3, str_4, str_5
+        );
         
         show_formatting(
             str_1, str_2, str_3, str_4, str_5,
@@ -40,6 +44,7 @@ int main() {
     return 0;
 }
 #endif // OUTER_MODE
+
 
 #ifdef INNER_MODE
 #include <stdio.h>

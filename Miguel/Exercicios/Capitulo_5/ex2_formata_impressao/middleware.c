@@ -9,12 +9,15 @@ void clear_buffer() {
 
 
 void ask_for_strings(
+    char *msg,
     char *str_1,
     char *str_2,
     char *str_3,
     char *str_4,
     char *str_5
 ) {
+    
+    printf("%s\n", msg);
     
     char *str_vec[5] = {str_1, str_2, str_3, str_4, str_5};
     for (int i = 0; i < 5; i++) {

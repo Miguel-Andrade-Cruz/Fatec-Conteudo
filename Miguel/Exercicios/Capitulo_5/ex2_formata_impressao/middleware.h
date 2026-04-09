@@ -5,6 +5,7 @@
 void clear_buffer();
 
 void ask_for_strings(
+    char *msg,
     char *str_1,
     char *str_2,
     char *str_3,
