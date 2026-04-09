@@ -19,12 +19,18 @@ void ask_for_string(char *string) {
 void to_lowercase_conversion(char *string) {
     
     for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
-        if (string[i_char] == 0x20) {
+        
+        int is_space = string[i_char] == 0x20;
+        int is_lower = string[i_char] >= 0x61 & string[i_char] <= 0x7a; 
+        
+        if (is_space || is_lower) {
             continue;
+            
         } else if (string[i_char] == '\0') {
             i_char = STRING_SIZE;
             
         } else {
+            
             string[i_char] += 0x20;
         }
     }
@@ -34,6 +40,6 @@ void to_lowercase_conversion(char *string) {
 
 void show_string(char *string) {
     
-    printf("Assim ficou a string em caixa baixa: %s", string);
+    printf("Assim ficou a string em caixa baixa: %s\n", string);
     return;
 }
