@@ -30,20 +30,29 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#endif
+#endif // OUTER_MODE
 
 
 #ifdef INNER_MODE
+#include <stdio.h>
+
+#define STRING_SIZE 10
 char string[STRING_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
 
 int main() {
     
-  char again = 'n';
-  do {
+    char again = 'n';
+    do {
         
         // 'ask_for_string' function
         printf("Insira uma string (máximo 10 caracteres):  ");
-        scanf("%s", string);
+        scanf("%[^\n]s", string);
         clear_buffer();
         // ------------------------------
         
@@ -51,12 +60,18 @@ int main() {
         
         // 'to_uppercase_conversion' function
         for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
-            if (string[i_char] == 0x20) {
+            
+            int is_space = string[i_char] == 0x20;
+            int is_upper = string[i_char] >= 0x41 && string[i_char] <= 0x5a;
+            
+            if (is_space || is_upper) {
                 continue;
+                
             } else if (string[i_char] == '\0') {
                 i_char = STRING_SIZE;
                 
             } else {
+                
                 string[i_char] -= 0x20;
             }
         }
@@ -73,4 +88,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#endif
+#endif // INNER_MODE
