@@ -5,6 +5,4 @@
 
 void clear_buffer();
 
-// void debug_show_vector(int *vec);
-
-// void debug_show_switch_vector(int *vec);
+void recieve_and_sort(int *vec);
