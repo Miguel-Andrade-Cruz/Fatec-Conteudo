@@ -4,10 +4,22 @@
 //     Por exemplo, se o vetor dado for v = {3, 5, 6, 8, 1, 4, 2, 3, 7, 4} o
 //     programa deve gerar os vetores u = {3, 5, 1, 3, 7} e w = {6, 8, 4, 2, 4}. 
 
-#include "middleware.h"
+#define INNER_MODE
+// #define OUTER_MODE
 
 
-int input_vec[VEC_SIZE], vec_1[VEC_SIZE / 2], vec_2[VEC_SIZE / 2];
+
+#ifdef INNER_MODE
+#include <stdio.h>
+#define VEC_SIZE 10
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int input_vec[VEC_SIZE], even_vec[VEC_SIZE / 2], odd_vec[VEC_SIZE / 2];
 
 int main() {
 
@@ -20,7 +32,6 @@ int main() {
             printf("%d -> ", i_num + 1);
             scanf("%d", &input_vec[i_num]);
             clear_buffer();
-            printf("VETOR INPUT INDICE %d : %d\n", i_num, input_vec[i_num]);//
         }
         
         // To split the vector into evens and odds
@@ -28,11 +39,11 @@ int main() {
             
             if (input_vec[i_ipt] % 2 == 0) {
                 
-                vec_1[i_even] = input_vec[i_ipt];
+                even_vec[i_even] = input_vec[i_ipt];
                 i_even++;
             } else {
                 
-                vec_2[i_odd] = input_vec[i_ipt];
+                odd_vec[i_odd] = input_vec[i_ipt];
                 i_odd++;
             }
         }
@@ -43,7 +54,7 @@ int main() {
         printf("{  ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", vec_1[i_num]);
+            printf("%d  ", even_vec[i_num]);
         }
         printf("}");
         
@@ -56,7 +67,7 @@ int main() {
         printf("{  ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", vec_2[i_num]);
+            printf("%d  ", odd_vec[i_num]);
         }
         printf("}");
         
@@ -67,3 +78,37 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // INNER_MODE
+
+
+
+#ifdef OUTER_MODE
+
+#include "middleware.h"
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        int
+            input_vec[VEC_SIZE],
+            even_vec[VEC_SIZE / 2],
+            odd_vec[VEC_SIZE / 2]
+        ;
+        ask_for_10_numbers(input_vec);
+        
+        extract_evens(input_vec, even_vec);
+        extract_odds(input_vec, odd_vec);
+        
+        show_vecs(even_vec, odd_vec);
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+
+#endif // OUTER_MODE
