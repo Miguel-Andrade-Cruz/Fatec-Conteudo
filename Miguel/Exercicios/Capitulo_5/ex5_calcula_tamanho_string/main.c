@@ -3,13 +3,13 @@
 //     Mostre o valor do comprimento na funcao main().
 //     (Declare o vetor como variavel global) (nao pode usar funcao de biblioteca)
 
-#include "middleware.h"
 
 #define INNER_MODE
 // #define OUTER_MODE
 
 
 #ifdef OUTER_MODE
+#include "middleware.h"
 int main() {
     
     char again = 'n';
@@ -29,11 +29,21 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#endif
+#endif // OUTER_MODE
 
 
 
 #ifdef INNER_MODE
+#include <stdio.h>
+
+const int STR_SIZE = 40;
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
 int main() {
     
     int size;
@@ -65,4 +75,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#endif
+#endif // INNER_MODE
