@@ -6,8 +6,8 @@
 
 void clear_buffer();
 
-void ask_matrix(int vec[2][3]);
+void ask_matrix(int vec[ROWS][COLS]);
 
-void matrix_multiplicator(int vec_1[2][3], int vec_2[2][3], int result_vec[2][3]);
+void matrix_multiplicator(int vec_1[ROWS][COLS], int vec_2[ROWS][COLS], int result_vec[ROWS][COLS]);
 
-void show_vecs(int vec_1[2][3], int vec_2[2][3], int result_vec[2][3]);
+void show_vecs(int vec_1[ROWS][COLS], int vec_2[ROWS][COLS], int result_vec[ROWS][COLS]);
