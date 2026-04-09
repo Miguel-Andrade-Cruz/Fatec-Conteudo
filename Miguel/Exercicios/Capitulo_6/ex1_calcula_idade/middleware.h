@@ -11,9 +11,7 @@ typedef struct {
 
 void clear_buffer();
 
-Date ask_birth_date();
-
-Date ask_now_date();
+Date ask_date(char *msg);
 
 Date convert_to_date_format(int date_on_days_format);
 
