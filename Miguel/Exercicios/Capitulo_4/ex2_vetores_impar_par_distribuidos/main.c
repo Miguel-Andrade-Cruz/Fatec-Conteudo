@@ -4,10 +4,24 @@
 //    Por exemplo, se o vetor dado for v = {3, 5, 6, 8, 1, 4, 2, 3, 7, 9}, o programa
 //    deve gerar os vetores u = {3, 6, 1, 2, 7} e w = {5, 8, 4, 3, 9}.
 
-#include "middleware.h"
+// #define INNER_MODE
+#define OUTER_MODE
 
 
-int input_vec[VEC_SIZE], vec_1[VEC_SIZE / 2], vec_2[VEC_SIZE / 2];
+#ifdef INNER_MODE
+#include <stdio.h>
+#define VEC_SIZE 10
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int input_vec[VEC_SIZE],
+    vec_1[VEC_SIZE / 2],
+    vec_2[VEC_SIZE / 2]
+;
 
 int main() {
 
@@ -47,12 +61,12 @@ int main() {
         // Showing the numbers
         // Odds
         printf("Números pares passados: ");
-        printf("{  ");
+        printf("{ ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", vec_1[i_num]);
+            printf(" %d ", vec_1[i_num]);
         }
-        printf("}");
+        printf(" }");
         
         
         printf("\n\n");
@@ -60,12 +74,12 @@ int main() {
         
         // Evens
         printf("Números ímpares passados: ");
-        printf("{  ");
+        printf("{ ");
         for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
             
-            printf("%d  ", vec_2[i_num]);
+            printf(" %d ", vec_2[i_num]);
         }
-        printf("}");
+        printf(" }");
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+
         printf("\nDeseja executar novamente? ( s / n )  ");
@@ -74,3 +88,33 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // INNER_MODE
+
+
+
+
+#ifdef OUTER_MODE
+#include "middleware.h"
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        int ipt_vec[VEC_SIZE],
+            vec_1[VEC_SIZE / 2],
+            vec_2[VEC_SIZE / 2]
+        ;
+        ask_for_10_numbers(ipt_vec);
+        
+        split_even_odd_evenly(ipt_vec, vec_1, vec_2);
+        
+        show_vecs(vec_1, vec_2);
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // OUTER_MODE

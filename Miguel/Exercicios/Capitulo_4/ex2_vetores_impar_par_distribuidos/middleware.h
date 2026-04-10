@@ -4,10 +4,8 @@
 
 void clear_buffer();
 
-// void ask_for_10_numbers(int *input_vec);
+void ask_for_10_numbers(int *input_vec);
 
-// void extract_even_nums(int *input, int *returned);
+void split_even_odd_evenly(int *input_vec, int *vec_1, int *vec_2);
 
-// void extract_odd_nums(int *input, int *returned);
-
-// void show_vecs(int *even_vec, int *odd_vec);
+void show_vecs(int *vec_1, int *vec_2);
