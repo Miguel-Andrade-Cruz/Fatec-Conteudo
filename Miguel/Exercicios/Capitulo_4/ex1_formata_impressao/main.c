@@ -10,3 +10,51 @@
 //      int                 long                unsigned
 //                float               double
 
+
+// ----------------------------------
+#define INNNER_MODE              // |
+#define OUTER_MODE               // |
+// ----------------------------------
+
+
+#ifdef INNER_MODE
+#include <stdio.h>
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // INNER_MODE
+
+#ifdef OUTER_MODE
+#include "middleware.h"
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // OUTER_MODE
