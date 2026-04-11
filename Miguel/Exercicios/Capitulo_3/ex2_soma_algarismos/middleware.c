@@ -1,8 +1,6 @@
 #include "middleware.h"
 #include <stdio.h>
 
-// #define DEBUG
-
 
 void clear_buffer() {
     
