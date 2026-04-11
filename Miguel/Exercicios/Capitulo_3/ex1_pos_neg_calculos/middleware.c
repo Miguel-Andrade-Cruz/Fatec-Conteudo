@@ -8,22 +8,10 @@ void clear_buffer() {
 }
 
 
-int ask_first_number() {
+int ask_number() {
     
     int num;
     
-    printf("Insira o primeiro número:  ");
-    scanf("%d", &num);
-    clear_buffer();
-    return num;
-}
-
-
-int ask_second_number() {
-    
-    int num;
-    
-    printf("Agora insira o segundo número:  ");
     scanf("%d", &num);
     clear_buffer();
     return num;
@@ -66,7 +54,7 @@ int show_signal(int num) {
 }
 
 
-float execute_combination_operation(char combination_operation, int num_1, int num_2) {
+float combination_operation(char combination_operation, int num_1, int num_2) {
     
     float start, end, result;
     if (num_1 < num_2) {
