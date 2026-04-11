@@ -44,9 +44,9 @@ float divide(float accumulator, float new_number) {
 void show_aritmetics(float acc_sum, float acc_subtraction, float acc_multiplication, float acc_division) {
     
     printf("Resultado das operações consecutivas:\n");
-    printf("Adição: %.4f\n", acc_sum);
-    printf("Subtração: %.4f\n", acc_subtraction);
-    printf("Multiplicação: %.4f\n", acc_multiplication);
-    printf("Divisão: %.4f\n", acc_division);
+    printf("Adição: %.3f\n", acc_sum);
+    printf("Subtração: %.3f\n", acc_subtraction);
+    printf("Multiplicação: %.3f\n", acc_multiplication);
+    printf("Divisão: %.3f\n", acc_division);
     return;
 }
