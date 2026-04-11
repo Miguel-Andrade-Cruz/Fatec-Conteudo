@@ -7,47 +7,36 @@ void clear_buffer() {
     return;
 }
 
-int ask_first_number() {
+float ask_number() {
     
-    int num;
+    float num;
     
     printf("Insira o primeiro número:  ");
-    scanf("%d", &num);
+    scanf("%f", &num);
     clear_buffer();
     return num;
 }
 
 
-int ask_second_number() {
-    
-    int num;
-    
-    printf("Agora insira segundo número:  ");
-    scanf("%d", &num);
-    clear_buffer();
-    return num;
-}
-
-
-float add(int num_1, int num_2) {
+float add(float num_1, float num_2) {
     
     return num_1 + num_2;
 }
 
 
-float subtract(int num_1, int num_2) {
+float subtract(float num_1, float num_2) {
     
     return num_1 - num_2;
 }
 
 
-float multiply(int num_1, int num_2) {
+float multiply(float num_1, float num_2) {
     
     return num_1 * num_2;
 }
 
 
-float divide(int num_1, int num_2) {
+float divide(float num_1, float num_2) {
     
     return num_1 / num_2;
 }
