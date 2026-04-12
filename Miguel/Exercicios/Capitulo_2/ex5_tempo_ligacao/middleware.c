@@ -86,6 +86,6 @@ int convert_seconds(int d_time_seconds) {
 
 void show_call_duration(int d_hour, int d_minute, int d_second) {
     
-    printf("A sua chamada teve %d:%d:%d de duração", d_hour, d_minute, d_second);
+    printf("A sua chamada teve %0.2d:%0.2d:%0.2d de duração", d_hour, d_minute, d_second);
     return;
 }
