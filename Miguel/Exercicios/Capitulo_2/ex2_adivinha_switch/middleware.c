@@ -13,7 +13,8 @@ void display_message() {
     
     printf("Bem vindo ao adivinhador!\n");
     printf("Adivinharei seu número na menor quantidade de tentativas possível\n");
-    printf("Ao aparecer o número, digite:\n\n   ' < ' --> se for menor\n\n   ' > ' --> se for maior\n\n   ' = ' --> se for igual\n\n");
+    printf("Ao aparecer o número, digite:");
+    printf("\n   ' < ' --> se for menor\n   ' > ' --> se for maior\n   ' = ' --> se for igual\n\n");
     return;
 }
 
@@ -24,10 +25,10 @@ int number_guesser() {
     int LOWER_BOUND = 1;
     int UPPER_BOUND = 99;
     
-    int half_cut = UPPER_BOUND - LOWER_BOUND / 2;
+    int half_cut = (UPPER_BOUND - LOWER_BOUND) / 2;
     
     char relation;
-    while (UPPER_BOUND - LOWER_BOUND != 2) {
+    while (UPPER_BOUND - LOWER_BOUND != 1) {
         
         printf("Seu número é %d?  ", half_cut);
         scanf("%c", &relation);
@@ -37,12 +38,12 @@ int number_guesser() {
         switch (relation) {
             case '>':
                 tries++;
-                LOWER_BOUND = half_cut;
+                LOWER_BOUND = half_cut + 1;
                 half_cut = LOWER_BOUND + (UPPER_BOUND - LOWER_BOUND) / 2;
                 break;
             case '<':
                 tries++;
-                UPPER_BOUND = half_cut;
+                UPPER_BOUND = half_cut - 1;
                 half_cut = LOWER_BOUND + (UPPER_BOUND - LOWER_BOUND) / 2;
                 break;
             case '=':
@@ -53,19 +54,19 @@ int number_guesser() {
         }
     }
     
-    printf("Seu número é %d?  ", LOWER_BOUND + 1);
+    printf("Seu número é %d?  ", UPPER_BOUND);
     scanf("%c", &relation);
     clear_buffer();
     printf("\n\n");
     
-    switch (relation) {
-        case '=':
-            guess = LOWER_BOUND + 1;
-            printf("O número escolhido é %d\n\n", guess);
-        case '>':
-            tries++;
-            guess = UPPER_BOUND;
-            printf("O número escolhido é %d\n\n", guess);
+    if (relation == '=') {
+        guess = UPPER_BOUND;
+        printf("O número escolhido é %d\n\n", guess);
+        
+    } else {
+        
+        tries++;
+        printf("O número escolhido é %d\n\n", guess);
     }
-    return tries; //
+    return tries;
 }
