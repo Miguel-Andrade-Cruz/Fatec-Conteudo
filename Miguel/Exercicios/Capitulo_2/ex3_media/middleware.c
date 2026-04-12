@@ -9,9 +9,9 @@ void clear_buffer() {
 }
 
 
-void show_average(int average) {
+void show_average(float average) {
     
-    printf("O valor médio dos números digitados é %d\n\n", average);
+    printf("O valor médio dos números digitados é %.2f\n\n", average);
     return;
 }
 
