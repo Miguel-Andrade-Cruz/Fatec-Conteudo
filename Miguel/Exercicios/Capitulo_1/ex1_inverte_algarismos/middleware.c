@@ -1,11 +1,8 @@
 #include "middleware.h"
 
-#define DEBUG
-
-
 void clear_buffer() {
     
-    while (getchar() != '\n');
+    while ( getchar() != '\n' );
     return;
 }
 
