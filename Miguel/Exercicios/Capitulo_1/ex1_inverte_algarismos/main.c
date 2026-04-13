@@ -39,6 +39,8 @@ int main() {
 #ifdef INNER_MODE
 #include <stdio.h>
 
+#define BASE_TEN 10
+
 void clear_buffer() {
 	
 	while ( getchar() != '\n');
@@ -67,7 +69,7 @@ int reflect_number(int input) {
     
     // get the hundreds
     hundreds = input / (BASE_TEN * BASE_TEN);
-    mirror_input += hundreds * (BASE_TEN / BASE_TEN);
+    mirror_input += hundreds;
     
     input -= hundreds * (BASE_TEN * BASE_TEN);
     
@@ -78,7 +80,8 @@ int reflect_number(int input) {
     input -= tens * BASE_TEN;
     
     // get the units
-    units = input;    
+    units = input;
+    mirror_input += units * (BASE_TEN * BASE_TEN);
     return mirror_input;
 }
 
