@@ -123,5 +123,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
-
 #endif // INNER_MODE
