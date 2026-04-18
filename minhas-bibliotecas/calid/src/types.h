@@ -1,10 +1,10 @@
 
-
 typedef enum {
     
     INT,
     CHAR,
-    FLOAT
+    FLOAT,
+    STR
 } Type;
 
 typedef union {
@@ -12,6 +12,7 @@ typedef union {
     int v_int;
     char v_char;
     float v_float;
+    char *v_str;
 } Generic;
 
 typedef struct{
