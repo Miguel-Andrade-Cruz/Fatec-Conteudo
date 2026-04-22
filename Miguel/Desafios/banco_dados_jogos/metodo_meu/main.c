@@ -1,22 +1,16 @@
-#include "helps.c"
-
+#include "actions/actions.c"
 
 
 int main() {
     
+    display_greetings();
     
-    char again = 'n';
     do {
         
+        display_menu();
         
-        
-        
-        
-        
-        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        printf("Deseja executar novamente?  ( s / n )  ");
-        scanf("%c", &again);
-        clear_buffer();
-    } while (again == 's');
+        int option = ask_action();
+        call_action(option);
+    } while (AGAIN == 's');
     return 0;
 }
