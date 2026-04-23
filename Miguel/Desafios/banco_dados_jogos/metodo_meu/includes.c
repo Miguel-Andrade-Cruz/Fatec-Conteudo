@@ -19,14 +19,6 @@ int check_table_end(FILE *fptr) {
     return feof(fptr);
 }
 
-void declare_clear(char *str, int size) {
-    
-    for (int i = 0; i < size; i++) {
-        str[i] = '\0';
-    }
-    
-     return;
-}
 
 long hashed(char *str) {
     
@@ -65,6 +57,5 @@ void display_menu() {
     printf("[ 6 ] - Excluir dados de um jogo\n");
     printf("[ 7 ] - Sair\n");
     printf("==============================================\n");
-    printf("----->>  ");
    return; 
 }
