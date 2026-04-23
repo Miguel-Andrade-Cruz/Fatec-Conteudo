@@ -88,6 +88,35 @@ void search_game() {
 
 void search_studio() {
     
+    char ipt;
+    ask_for("Digite a primeira letra do estúdio:  ", &ipt);
+    
+    FILE *fptr;
+    fptr = fopen(DB_FILE, "r");
+    
+    char game[FIELD_SIZE + 1], studio[FIELD_SIZE + 1];
+    int exists = 0;
+    while (1) {
+        
+        read_record(game, studio, fptr);
+        if ( check_table_end(fptr) ) {
+            
+            if (!exists) {
+                 display_not_found(&ipt);
+            }
+            fclose(fptr);
+            return;
+        }
+        
+        int matched = ( ipt == studio[0] );
+        if ( matched ) {
+            
+            exists = 1;
+            display_record(game, studio);
+        }
+        
+    }
+    fclose(fptr);
     return;
 }
 

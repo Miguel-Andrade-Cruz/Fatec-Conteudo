@@ -33,7 +33,6 @@ long hashed(char *str) {
     
     hash %= MOD_PRIME;
     
-    printf("HASH: %li\n", hash);
     return hash;
 }
 
