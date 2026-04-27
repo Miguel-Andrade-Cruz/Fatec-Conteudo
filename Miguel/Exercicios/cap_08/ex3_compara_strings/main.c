@@ -6,7 +6,7 @@
 
 
 #define INNER_MODE
-#define OUTER_MODE
+// #define OUTER_MODE
 
 
 #ifdef INNER_MODE
@@ -15,28 +15,29 @@
 
 void clear_buffer() {
     
-    while (getchar() == '\n');
+    while (getchar() != '\n');
     return;
 }
 
 int strequal(char *str1, char *str2) {
     
-    int is_equal = 1;
+    int is_equal = 0;
+    int i = 0;
     while (
-        str1[i] == str2[i] ||
-        str1[i] == '\n' ||
-        str2[i] == '\n'
+        str1[i] == str2[i] &&
+        str1[i] != '\0' &&
+        str2[i] != '\0'
     ) {
         i++;
     }
-    if ( str1[i] == '\n' && str2[i] == '\n' ) {
-        return 1;
+    if ( str1[i] == '\0' && str2[i] == '\0' ) {
+        is_equal = 1;
     }
-    return 0;
+    return is_equal;
 }
 
 
-char *str1, *str2;
+char str1[10], str2[10];
 
 int main() {
     
@@ -51,6 +52,14 @@ int main() {
         scanf("%s", str2);
         clear_buffer();
         
+        int is_equal = strequal(str1, str2);
+        
+        if (is_equal) {
+            printf("As duas strings são iguais\n");
+        } else {
+            printf("As duas strings são diferentes\n");
+        }
+        
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
         printf("Deseja executar novamente ( s / n )  ");
         scanf("%c", &again);
@@ -58,7 +67,7 @@ int main() {
     } while (again == 's');
     return 0;
 }
-#ifdef // INNER_MODE
+#endif // INNER_MODE
 
 
 #ifdef OUTER_MODE
@@ -74,5 +83,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
-
 #endif // OUTER_MODE
