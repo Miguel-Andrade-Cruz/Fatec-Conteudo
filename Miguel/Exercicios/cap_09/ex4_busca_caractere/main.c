@@ -15,6 +15,8 @@
 
 #ifdef INNER_MODE
 
+#include <stdio.h>
+
 void clear_buffer() {
     
     while ( getchar() != '\n' );
@@ -43,7 +45,12 @@ int main() {
     char again = 'n';
     do {
         
-        char list[10];
+        char list[] = {
+            'b','d','f',
+            'h','j','k',
+            'm','o','q',
+            's','u','w','y'
+        };
         char ipt, *pIpt;
         
         printf("Insira um caractere: ");
