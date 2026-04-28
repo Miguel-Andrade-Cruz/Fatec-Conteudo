@@ -1,3 +1,9 @@
+
+// EX 1 -- NO
+// EX 2 -- OK
+// EX 3 -- OK
+// EX 4 -- OK
+
 #define EX_0
 
 #ifdef EX_1
@@ -293,23 +299,6 @@ int main() {
                     continue;
             }
         } while (_CONTINUE == 1);
-        
-        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-        printf("Deseja executar novamente ( s / n )  ");
-        scanf("%c", &again);
-        clear_buffer();
-    } while (again == 's');
-    return 0;
-}
-#endif // INNER_MODE
-
-
-#ifdef OUTER_MODE
-int main() {
-    
-    char again = 'n';
-    do {
-        
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
         printf("Deseja executar novamente ( s / n )  ");

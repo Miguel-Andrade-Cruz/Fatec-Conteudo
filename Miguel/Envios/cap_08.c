@@ -1,3 +1,11 @@
+
+// EX 1 -- NO
+// EX 2 -- OK
+// EX 3 -- OK
+// EX 4 -- OK
+// EX 5 -- OK
+// EX 6 -- OK
+
 #define EX_0
 
 
