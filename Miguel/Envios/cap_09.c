@@ -1,6 +1,6 @@
 
 // EX 1 -- NO
-// EX 2 -- OK
+// EX 2 -- NO
 // EX 3 -- NO
 // EX 4 -- NO
 // EX 5 -- NO
@@ -87,6 +87,64 @@ int main() {
 
 // -----------------------------------------------
 #ifdef EX_4
+#include <stdio.h>
+
+void clear_buffer() {
+    
+    while ( getchar() != '\n' );
+    return;
+}
+
+
+
+int search_for_char(char *ipt, char *list) {
+    
+    int i = 0;
+    while ( i <= 10 ) {
+        
+        if ( *ipt == list[i] ) {
+            return 1;
+        }
+        i++;
+    }
+    return 0;
+}
+
+
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        char list[] = {
+            'b','d','f',
+            'h','j','k',
+            'm','o','q',
+            's','u','w','y'
+        };
+        char ipt, *pIpt;
+        
+        printf("Insira um caractere: ");
+        scanf("%c", pIpt);
+        clear_buffer();
+        
+        int found = search_for_char(pIpt, list);
+        
+        if (found) {
+            printf("Essa letra existe na lista\n");
+        } else {
+            printf("Essa letra não está na lista\n");
+        }
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
 #endif // EX_4
 // -----------------------------------------------
 
