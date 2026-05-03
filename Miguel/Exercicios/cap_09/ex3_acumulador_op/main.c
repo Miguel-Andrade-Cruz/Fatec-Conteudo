@@ -70,16 +70,16 @@ int main() {
         printf(
 "Digite a primeira expressão completa [ 4 + 5 ].\n \
 Depois, o primeiro operando será o valor acumulado, \n \
-então digite apenas o restante [ / 3 ]."
+então digite apenas o restante [ / 3 ].\n"
         );
         
         scanf("%f %c %d", pAcc, pOperator, pIpt);
-        clear_buffer();
+        exec_operation(pIpt, pOperator, pAcc);
         do {
             
-            ask_operation(pIpt, pOperator);
             exec_operation(pIpt, pOperator, pAcc);
             show_cur_acc(pAcc);
+            ask_operation(pIpt, pOperator);
         } while (*pOperator != '=');
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
