@@ -1,7 +1,7 @@
 
 // EX 1 -- NO
 // EX 2 -- OK
-// EX 3 -- NO
+// EX 3 -- OK
 // EX 4 -- OK
 // EX 5 -- OK
 // EX 6 -- OK
@@ -80,6 +80,85 @@ int main() {
 
 // -----------------------------------------------
 #ifdef EX_3
+#include <stdio.h>
+
+void clear_buffer() {
+    
+    while ( getchar() != '\n' );
+    return;
+}
+
+
+void ask_operation(int *ipt, char *operator) {
+    
+    scanf("%c %d", operator, ipt);
+    clear_buffer();
+}
+
+void exec_operation(int *ipt, char *operator, float *acc) {
+    
+    switch ( *operator ) {
+        
+        case '+':
+        *acc += *ipt;
+        break;
+        
+        case '-':
+        *acc -= *ipt;
+        break;
+        
+        case '*':
+        *acc *= *ipt;
+        break;
+        
+        case '/':
+        *acc /= *ipt;
+        break;
+    }
+    return;
+}
+
+
+
+void show_cur_acc(float *acc) {
+    
+    printf("%.2f ", *acc);
+    return;
+}
+
+
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        char operator, *pOperator = &operator;
+        float accumulator, *pAcc = &accumulator;
+        int ipt, *pIpt = &ipt;
+        
+        printf(
+"Digite a primeira expressão completa [ 4 + 5 ].\n \
+Depois, o primeiro operando será o valor acumulado, \n \
+então digite apenas o restante [ / 3 ]."
+        );
+        
+        scanf("%f %c %d", pAcc, pOperator, pIpt);
+        clear_buffer();
+        do {
+            
+            exec_operation(pIpt, pOperator, pAcc);
+            show_cur_acc(pAcc);
+            ask_operation(pIpt, pOperator);
+        } while (*pOperator != '=');
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
 #endif // EX_3
 // -----------------------------------------------
 
