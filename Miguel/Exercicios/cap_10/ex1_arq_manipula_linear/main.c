@@ -6,9 +6,20 @@
 //     arquivo (um por vezes).
 
 
+
+#define INNER_MODE
+// #define OUTER_MODE
+
+#ifdef INNER_MODE
+
+#include <stdlib.h>
 #include <stdio.h>
 
-
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
 
 
 int main() {
@@ -17,29 +28,37 @@ int main() {
     do {
         
         FILE *fptr;
-        fptr = fopen("caracteres.txt", "rw");
+        fptr = fopen("../txts/ex1.txt", "w+");
         
         if (fptr == NULL) {
             printf("Erro ao abrir o arquivo\n");
             exit(0);
         }
         
+        
+        // write chars to file ------ <
         char ipt;
         printf("--->>  ");
-        getchar();
+        ipt = getchar();
         while (ipt != '0') {
             
             fputc(ipt, fptr);
-            printf("--->>  ");
-            getchar(ipt, fptr);
+            ipt = getchar();
         }
         fputc('\0', fptr);
-        
-        
         fseek(fptr, 0, SEEK_SET);
+        // ------------ >
         
-        
-        
+        // read chars from file ------ <
+        char buff;
+        buff = fgetc(fptr);
+        while ( buff != '\0' ) {
+            putchar(' ');
+            putchar(buff);
+            buff = fgetc(fptr);
+        }
+        // ------------ >
+        fclose(fptr);
         
         // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
         printf("Deseja executar novamente ( s / n )  ");
@@ -48,3 +67,21 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // INNER_MODE
+
+
+#ifdef OUTER_MODE
+
+int main() {
+    
+    char again = 'n';
+    do {
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // OUTER_MODE
