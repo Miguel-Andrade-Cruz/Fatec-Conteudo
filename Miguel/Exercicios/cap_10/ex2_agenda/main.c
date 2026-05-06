@@ -16,6 +16,7 @@
 //     7 - exclui contato pesquisando pelo nome completo
 //     8 - saida
 
+#include <stddef.h>
 #define INNER_MODE
 
 
@@ -31,6 +32,7 @@ void clear_buffer() {
 }
 
 // --------------------|
+#define DATA_FILE "../txts/agenda.txt"
 int DONE = 0;
 // --------------------|
 
@@ -45,10 +47,11 @@ typedef struct {
 
 
 int ask_action() {
-
+    
     int ipt;
     printf("Escolha sua ação:  ");
     scanf("%d", &ipt);
+    clear_buffer();
     return ipt;
 }
 
@@ -67,7 +70,7 @@ void display_menu() {
 }
 
 int strequal(char *ipt, char *compare) {
-
+    
     int i = 0;
     while (
         ipt[i] == compare[i] &&
@@ -84,17 +87,15 @@ int strequal(char *ipt, char *compare) {
 void load_clients(Client *clients) {
     
     FILE *fptr;
-    fptr = fopen("C:/Users/lab52/Desktop/Repos/fatec-conteudo/txts/agenda.txt", "w");
+    fptr = fopen(DATA_FILE, "r");
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.");
         exit(0);
     }
-    
-    int reads = fread(clients, sizeof(Client), 4, fptr);
-    if ( reads == 0 ) {
-        for (int i = 0; i < 4; i++) {
-            clients->name[0] = '^';
-        }
+    for (int i = 0; i < 4; i++) {
+        size_t sucess = fread(&clients[i], sizeof(Client), 1, fptr);
+        if (sucess == 0)
+            clients[i].name[0] = '^';
     }
     fclose(fptr);
     return;
@@ -104,7 +105,7 @@ void load_clients(Client *clients) {
 void store_clients(Client *clients) {
     
     FILE *fptr;
-    fptr = fopen("../txts/agendas.txt", "r");
+    fptr = fopen(DATA_FILE, "w");
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.");
         exit(0);
@@ -117,6 +118,7 @@ void store_clients(Client *clients) {
 
 void client_form(Client *client) {
     
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     printf("Nome:  ");
     scanf("%s", client->name);
     clear_buffer();
@@ -129,18 +131,21 @@ void client_form(Client *client) {
     scanf("%d", &client->day);
     clear_buffer();
     
-    printf("Month:  ");
+    printf("Mês:  ");
     scanf("%d", &client->month);
     clear_buffer();
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     return;
 }
 
-void display_client(Client *client) {
+int display_client(Client *client) {
     
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     printf("Nome: %s\n", client->name);
     printf("Telefone: %s\n", client->phone);
     printf("Nascimento: %d/%d\n", client->day, client->month);
-    return;
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    return 1;
 }
 
 
@@ -150,8 +155,9 @@ void __1_insert(Client *clients) {
     
     int i = 0;
     while (i < 4) {
-        if ( clients->name[0] == '^' ) {
-            client_form(&clients[0]);
+        if ( clients[i].name[0] == '^' ) {
+            client_form(&clients[i]);
+            return;
         }
         i++;
     }
@@ -161,15 +167,13 @@ void __1_insert(Client *clients) {
 
 void __2_list(Client *clients) {
     
+    int has_records = 0;
     for (int i = 0; i < 4; i++) {
-        if (clients->name[0] == '^') continue;
+        if (clients[i].name[0] == '^') continue;
         
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-        printf("Nome: %s", clients->name);
-        printf("Telefone: %s", clients->phone);
-        printf("Nascimento: %d/%d", clients->day, clients->month);
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        has_records = display_client(&clients[i]);
     }
+    if (!has_records) printf("Não há registros no banco.\n");
     return;
 }
 
@@ -186,8 +190,12 @@ void __3_search(Client *clients) {
         int is_equal = strequal(ipt, clients[i].name);
         if (is_equal) {
             display_client(&clients[i]);
+            clear_buffer();
+            return;
         }
+        i++;
     }
+    printf("'%s' não está cadastrado.\n", ipt);
     return;
 }
 
@@ -197,13 +205,16 @@ void __4_list(Client *clients) {
     char ipt;
     printf("Insira a primeira letra do nome do cliente:  ");
     ipt = getchar();
-    
+
+    int has_matches = 0;
     for (int i = 0; i < 4; i++) {
         
         if ( ipt == clients[i].name[0] ) {
-            display_client(&clients[i]);
+            has_matches = display_client(&clients[i]);
         }
     }
+    if (!has_matches)
+        printf("!-!-!-!-!\nNão há clientes com inicial '%c'\n!-!-!-!-!\n", ipt);
     return;
 }
 
@@ -213,14 +224,16 @@ void __5_display_month(Client *clients) {
     int current_month;
     printf("Qual é o mês da data de hoje? --->>  ");
     scanf("%d", &current_month);
-    
+
+    int has_matches = 0;
     for (int i = 0; i < 4; i++) {
         
         if ( current_month == clients[i].month ) {
-            display_client(&clients[i]);
+            has_matches = display_client(&clients[i]);
         }
     }
-    
+    if (!has_matches)
+        printf("!-!-!-!-!\nNão há clientes que naceram no mês %d\n!-!-!-!-!\n", current_month);
     return;
 }
 
@@ -238,9 +251,11 @@ void __6_edit(Client *clients) {
         int is_equal = strequal(ipt, clients[i].name);
         if ( is_equal ) {
             client_form(&clients[i]);
-            break;
+            return;
         }
+        i++;
     }
+    printf("!-!-!-!-!\nNão há registros com o nome '%s'.\n!-!-!-!-!\n", ipt);
     return;
 }
 
@@ -257,10 +272,12 @@ void __7_delete(Client *clients) {
         
         int is_equal = strequal(ipt, clients[i].name);
         if ( is_equal ) {
-            clients[i].name[0] == '^';
+            clients[i].name[0] = '^';
             break;
         }
-    }    
+        i++;
+    }
+    printf("!-!-!-!-!\nNão há registros com o nome '%s'.\n!-!-!-!-!\n", ipt);
     return;
 }
 
@@ -276,6 +293,7 @@ int main() {
     char again = 'n';
     
     do {
+        DONE = 0;
         
         Client clients[4];
         load_clients(clients);
