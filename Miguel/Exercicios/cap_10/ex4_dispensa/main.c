@@ -203,7 +203,7 @@ void __5_change_qtd(Product *product) {
     clear_buffer();
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "a+");
+    fptr = fopen(DATA_FILE, "r+");
     
     int found = 0;
     while (1) {
@@ -241,7 +241,7 @@ void __6_edit(Product *product) {
     clear_buffer();
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "a+");
+    fptr = fopen(DATA_FILE, "r+");
 
     int found = 0;
     while (1) {
@@ -275,7 +275,7 @@ void __7_delete(Product *product) {
     clear_buffer();
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "a+");
+    fptr = fopen(DATA_FILE, "r+");
 
     int found = 0;
     while (1) {
