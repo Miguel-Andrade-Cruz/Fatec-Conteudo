@@ -107,21 +107,14 @@ void display_product(Product *product) {
 void __1_insert(Product *product) {
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "a+");
+    fptr = fopen(DATA_FILE, "a");
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(0);
     }
     char again = 's';
     while ( again == 's' ) {
-        size_t sucess = fread(product, sizeof(Product), 1, fptr);
-        if (sucess != 0) {
-            if (product->sku[0] == '\0') {
-                fseek(fptr, -sizeof(Product), SEEK_CUR);
-            } else {
-                continue;
-            }
-        }
+        
         ask_product(product);
         fwrite(product, sizeof(Product), 1, fptr);
         printf("Continuar? [ s / n ] --->>  ");
@@ -189,7 +182,7 @@ void __4_not_available(Product *product) {
     fptr = fopen(DATA_FILE, "r");
     int found = 0;
     while (1) {
-        
+
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         if (product->stock == 0) {
@@ -210,9 +203,13 @@ void __5_change_qtd(Product *product) {
     clear_buffer();
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "w+");
+    fptr = fopen(DATA_FILE, "a+");
+    
     int found = 0;
     while (1) {
+        
+        fpos_t current;
+        fgetpos(fptr, &current);
         
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
@@ -220,12 +217,12 @@ void __5_change_qtd(Product *product) {
         int matched = strequal(ipt, product->description);
         if (matched) {
             
-            int found = 1;
+            found = 1;
             printf("Nova quantidade:  ");
             scanf("%d", &product->stock);
             clear_buffer();
             
-            fseek(fptr, -sizeof(Product), SEEK_CUR);
+            fsetpos(fptr, &current);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
@@ -245,19 +242,22 @@ void __6_edit(Product *product) {
     
     FILE *fptr;
     fptr = fopen(DATA_FILE, "a+");
+
     int found = 0;
     while (1) {
-        
+        fpos_t current;
+        fgetpos(fptr, &current);
+
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
         int matched = strequal(ipt, product->description);
         if (matched) {
             
-            int found = 1;
+            found = 1;
             ask_product(product);
             
-            fseek(fptr, -sizeof(Product), SEEK_CUR);
+            fsetpos(fptr, &current);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
@@ -276,9 +276,13 @@ void __7_delete(Product *product) {
     
     FILE *fptr;
     fptr = fopen(DATA_FILE, "a+");
+
     int found = 0;
     while (1) {
-        
+
+        fpos_t current;
+        fgetpos(fptr, &current);
+
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -287,7 +291,7 @@ void __7_delete(Product *product) {
             
             found = 1;
             product->sku[0] = '\0';
-            fseek(fptr, -sizeof(Product), SEEK_CUR);
+            fsetpos(fptr, &current);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
