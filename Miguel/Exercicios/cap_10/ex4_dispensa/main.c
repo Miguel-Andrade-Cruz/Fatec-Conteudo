@@ -16,6 +16,10 @@
 //     8 - saida
 
 
+#define INNER_MODE
+
+#ifdef INNER_MODE
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -107,7 +111,7 @@ void display_product(Product *product) {
 void __1_insert(Product *product) {
     
     FILE *fptr;
-    fptr = fopen(DATA_FILE, "a");
+    fptr = fopen(DATA_FILE, "r+");
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(0);
@@ -115,6 +119,17 @@ void __1_insert(Product *product) {
     char again = 's';
     while ( again == 's' ) {
         
+        fpos_t current;
+        fgetpos(fptr, &current);
+        fread(product, sizeof(Product), 1, fptr);
+        
+        if (!feof(fptr)) {
+            if (product->description[0] != '\0') {
+                continue;
+            } else {
+                fsetpos(fptr, &current);
+            }
+        }
         ask_product(product);
         fwrite(product, sizeof(Product), 1, fptr);
         printf("Continuar? [ s / n ] --->>  ");
@@ -136,12 +151,11 @@ void __2_list(Product *product) {
     int has_records = 0;
     while (1) {
         
-        size_t sucess = fread(product, sizeof(Product), 1, fptr);
-        if (product->sku[0] == '\0') {
-            has_records = 1;
+        fread(product, sizeof(Product), 1, fptr);
+        if (feof(fptr)) break;
+        if (product->description[0] == '\0') {
             continue;
         }
-        if (feof(fptr)) break;
         display_product(product);
     }
     if (!has_records) printf("Não existem produtos na dispensa.\n");
@@ -182,7 +196,7 @@ void __4_not_available(Product *product) {
     fptr = fopen(DATA_FILE, "r");
     int found = 0;
     while (1) {
-
+        
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         if (product->stock == 0) {
@@ -210,7 +224,6 @@ void __5_change_qtd(Product *product) {
         
         fpos_t current;
         fgetpos(fptr, &current);
-        
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -242,12 +255,12 @@ void __6_edit(Product *product) {
     
     FILE *fptr;
     fptr = fopen(DATA_FILE, "r+");
-
+    
     int found = 0;
     while (1) {
+        
         fpos_t current;
         fgetpos(fptr, &current);
-
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -276,13 +289,12 @@ void __7_delete(Product *product) {
     
     FILE *fptr;
     fptr = fopen(DATA_FILE, "r+");
-
+    
     int found = 0;
     while (1) {
-
+        
         fpos_t current;
         fgetpos(fptr, &current);
-
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -290,7 +302,8 @@ void __7_delete(Product *product) {
         if (matched) {
             
             found = 1;
-            product->sku[0] = '\0';
+            product->description[0] = '\0';
+            
             fsetpos(fptr, &current);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
@@ -363,3 +376,4 @@ int main() {
     } while (again == 's');
     return 0;
 }
+#endif // INNER_MODE
