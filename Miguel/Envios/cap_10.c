@@ -505,15 +505,13 @@ void __1_insert(Product *product) {
     char again = 's';
     while ( again == 's' ) {
         
-        fpos_t current;
-        fgetpos(fptr, &current);
         fread(product, sizeof(Product), 1, fptr);
         
         if (!feof(fptr)) {
             if (product->description[0] != '\0') {
                 continue;
             } else {
-                fsetpos(fptr, &current);
+                fseek(fptr, (long) -sizeof(Product), SEEK_CUR);
             }
         }
         ask_product(product);
@@ -608,8 +606,6 @@ void __5_change_qtd(Product *product) {
     int found = 0;
     while (1) {
         
-        fpos_t current;
-        fgetpos(fptr, &current);
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -621,7 +617,7 @@ void __5_change_qtd(Product *product) {
             scanf("%d", &product->stock);
             clear_buffer();
             
-            fsetpos(fptr, &current);
+            fseek(fptr, (long) -sizeof(Product), SEEK_CUR);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
@@ -645,8 +641,6 @@ void __6_edit(Product *product) {
     int found = 0;
     while (1) {
         
-        fpos_t current;
-        fgetpos(fptr, &current);
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -656,7 +650,7 @@ void __6_edit(Product *product) {
             found = 1;
             ask_product(product);
             
-            fsetpos(fptr, &current);
+            fseek(fptr, (long) -sizeof(Product), SEEK_CUR);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
@@ -679,8 +673,6 @@ void __7_delete(Product *product) {
     int found = 0;
     while (1) {
         
-        fpos_t current;
-        fgetpos(fptr, &current);
         fread(product, sizeof(Product), 1, fptr);
         if (feof(fptr)) break;
         
@@ -690,7 +682,7 @@ void __7_delete(Product *product) {
             found = 1;
             product->description[0] = '\0';
             
-            fsetpos(fptr, &current);
+            fseek(fptr, (long) -sizeof(Product), SEEK_CUR);
             fwrite(product, sizeof(Product), 1, fptr);
             break;
         }
@@ -761,6 +753,5 @@ int main() {
         clear_buffer();
     } while (again == 's');
     return 0;
-}
 #endif // EX_4
 // ------------------------------------------------
