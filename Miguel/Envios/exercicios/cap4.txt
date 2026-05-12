@@ -1,0 +1,462 @@
+#define EX_1
+
+#ifdef EX_1
+#include <stdio.h>
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+const int one_to_zero = 1234567890;
+
+const int TEN = 10;
+const int TWENY = 20;
+const int THIRTY = 30;
+const int FORTY = 40;
+const int FIFTY = 50;
+
+
+int vec_int[3];
+float vec_float[3];
+unsigned vec_unsigned[3];
+long vec_long[3];
+double vec_double[3];
+
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        // Request user input ------ <
+        printf("Insira quatro tipos de número:\n");
+        for (int i = 0; i < 3; i++) {
+            
+            printf("Rodada %d\n\n", i + 1);
+            
+            printf("Número inteiro -->> ");
+            scanf("%d", &vec_int[i]);
+            clear_buffer();
+            
+            printf("Número decimal -->> ");
+            scanf("%f", &vec_float[i]);
+            clear_buffer();
+            
+            printf("Número inteiro positivo -->> ");
+            scanf("%ui", &vec_unsigned[i]);
+            clear_buffer();
+            
+            printf("Número inteiro muito grande -->> ");
+            scanf("%li", &vec_long[i]);
+            clear_buffer();
+            
+            printf("Número com muitas casas decimais -->> ");
+            scanf("%lf", &vec_double[i]);
+            clear_buffer();
+        }
+        // ------------ >
+        
+        // print formatting ------ <
+        printf("%10d%8d%8d%8d%8d\n",
+            TEN, TWENY, THIRTY, FORTY, FIFTY
+        );
+        printf("%4d%d%d%d%d\n",
+            one_to_zero, one_to_zero,
+            one_to_zero, one_to_zero,
+            one_to_zero
+        );
+        
+        for (int i = 0; i < 3; i++) {
+            
+            printf("%6d%17li%16u\n",
+                vec_int[i], vec_long[i], vec_unsigned[i]
+            );
+            printf("%16f%15lf\n",
+                vec_float[i], vec_double[i]
+            );
+        }
+        // ------------ >
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // INNER_MODE
+
+#ifdef OUTER_MODE
+#include "middleware.h"
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_1
+
+// ---------------------
+// --------------------
+
+#ifdef EX_2
+#include <stdio.h>
+#define VEC_SIZE 10
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int input_vec[VEC_SIZE],
+    vec_1[VEC_SIZE / 2],
+    vec_2[VEC_SIZE / 2]
+;
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        printf("Insira 10 números:  \n");
+        for (int i_num = 0; i_num < VEC_SIZE; i_num++) {
+            
+            printf("%d -> ", i_num + 1);
+            scanf("%d", &input_vec[i_num]);
+            clear_buffer();
+        }
+        
+        // To split the vectors into evens and odds, evenly
+        char turn = 'o';
+        for (int i_ipt = 0, i_vec_1 = 0, i_vec_2 = 0; i_ipt < VEC_SIZE; i_ipt++) {
+            
+            int current_num = input_vec[i_ipt];
+            
+            if (turn == 'o' && current_num % 2 != 0) {
+                vec_1[i_vec_1] = current_num;
+                i_vec_1++;
+                turn = 'e';
+                
+            } else if (turn == 'e' && current_num % 2 == 0) {
+                vec_1[i_vec_1] = current_num;
+                i_vec_1++;
+                turn = 'o';
+                
+            } else {
+                vec_2[i_vec_2] = current_num;
+                i_vec_2++;
+            }
+        }
+        
+        // Showing the numbers
+        // Odds
+        printf("Números pares passados: ");
+        printf("{ ");
+        for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
+            
+            printf(" %d ", vec_1[i_num]);
+        }
+        printf(" }");
+        
+        
+        printf("\n\n");
+        
+        
+        // Evens
+        printf("Números ímpares passados: ");
+        printf("{ ");
+        for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
+            
+            printf(" %d ", vec_2[i_num]);
+        }
+        printf(" }");
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_2
+
+// ---------------------
+// --------------------
+
+#ifdef EX_3
+#include <stdio.h>
+#define VEC_SIZE 10
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int input_vec[VEC_SIZE], even_vec[VEC_SIZE / 2], odd_vec[VEC_SIZE / 2];
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        printf("Insira 10 números:  \n");
+        for (int i_num = 0; i_num < VEC_SIZE; i_num++) {
+            
+            printf("%d -> ", i_num + 1);
+            scanf("%d", &input_vec[i_num]);
+            clear_buffer();
+        }
+        
+        // To split the vector into evens and odds
+        for (int i_even = 0, i_odd = 0, i_ipt = 0; i_ipt < VEC_SIZE; i_ipt++) {
+            
+            if (input_vec[i_ipt] % 2 == 0) {
+                
+                even_vec[i_even] = input_vec[i_ipt];
+                i_even++;
+            } else {
+                
+                odd_vec[i_odd] = input_vec[i_ipt];
+                i_odd++;
+            }
+        }
+        
+        // Showing the numbers
+        // Odds
+        printf("Números pares passados: ");
+        printf("{  ");
+        for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
+            
+            printf("%d  ", even_vec[i_num]);
+        }
+        printf("}");
+        
+        
+        printf("\n\n");
+        
+        
+        // Evens
+        printf("Números ímpares passados: ");
+        printf("{  ");
+        for (int i_num = 0; i_num < VEC_SIZE / 2; i_num++) {
+            
+            printf("%d  ", odd_vec[i_num]);
+        }
+        printf("}");
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_3
+
+// ---------------------
+// --------------------
+
+#ifdef EX_4
+#include <stdio.h>
+#define VEC_SIZE 10
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+
+    int input_vec[VEC_SIZE] = {
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0
+    };
+    
+    char again = 'n';
+    do {
+        // recieve and sort algorithn ------ <
+        const int right_bound = VEC_SIZE - 1;
+        int right_i;
+        printf("Insira 10 números inteiros, separados por espaço:\n");
+        for (int count = 0; count < VEC_SIZE; count++) {
+            
+            right_i = right_bound;
+            int ipt;
+            printf("[%d]-> ", count + 1);
+            scanf("%d", &ipt);
+            clear_buffer();
+            
+            while (ipt < input_vec[right_i]) right_i--;
+            
+            int left_most = (VEC_SIZE - count) - 1;
+            
+            int times_to_switch = right_i - left_most;
+            for (
+                int i_left_most = left_most, switches = 0;
+                switches < times_to_switch;
+                switches++, i_left_most++
+            ) {
+                
+                input_vec[i_left_most] = input_vec[i_left_most + 1];
+            }
+            
+            input_vec[right_i] = ipt;
+        }
+        // ------------ >
+        
+        // 'show_vector' function
+        printf("{ ");
+        for (int i = 0; i < VEC_SIZE; i++) {
+            printf(" %d ", input_vec[i]);
+        }
+        printf(" }\n");
+        
+        // reset vector ------ <
+        for (int i = 0; i < VEC_SIZE; i++) {
+            input_vec[i] = 0;
+        }
+        // ------------ >
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_4
+
+// ---------------------
+// --------------------
+
+#ifdef EX_5
+#include <stdio.h>
+
+#define ROWS 2
+#define COLS 3
+
+int vec_1[ROWS][COLS];
+int vec_2[ROWS][COLS];
+int vec_mult[ROWS][COLS];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    
+    char again = 'n';
+    do {
+        
+        printf("Insira os números para a primeira matriz:\n\n");
+        
+        // 'ask_matrix' matrix 1
+        printf("Matriz 1:\n");
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            for (int i_col = 0; i_col < COLS; i_col++) {
+                
+                printf("[%d][%d] ->> ", i_row, i_col);
+                scanf("%d", &vec_1[i_row][i_col]);
+                clear_buffer();
+            }
+        }
+        
+        // --------------------------------------
+        printf("\n-----------------------------\n");
+        // --------------------------------------
+        
+        // 'ask_matrix' for matrix 2
+        printf("Matriz 2:\n");
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            for (int i_col = 0; i_col < COLS; i_col++) {
+                
+                printf("[%d][%d] ->> ", i_row, i_col);
+                scanf("%d", &vec_2[i_row][i_col]);
+                clear_buffer();
+            }
+        }        
+        
+        
+        // 'matrix_multiplicator'
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            for (int i_col = 0; i_col < COLS; i_col++) {
+                
+                vec_mult[i_row][i_col] = vec_1[i_row][i_col] * vec_2[i_row][i_col];
+            }
+        }
+        
+        
+        // 'show_vecs'
+        printf("Resultados:\n");
+        printf("    Vetor 1    \n");
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            printf("[  ");
+            printf(
+                "%d  %d  %d",
+                vec_1[i_row][0],
+                vec_1[i_row][1],
+                vec_1[i_row][2]
+            );
+            printf("  ]\n");
+        }
+        
+        
+        printf("    Vetor 2    \n");
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            printf("[  ");
+                
+            printf(
+                "%d  %d  %d",
+                vec_2[i_row][0],
+                vec_2[i_row][1],
+                vec_2[i_row][2]
+            );
+            printf("  ]\n");
+        }
+        
+        
+        printf("    Vetor multiplicado    \n");
+        for (int i_row = 0; i_row < ROWS; i_row++) {
+            
+            printf("[  ");
+            printf(
+                "%d  %d  %d",
+                vec_mult[i_row][0],
+                vec_mult[i_row][1],
+                vec_mult[i_row][2]
+            );
+            printf("  ]\n");
+        }
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Desja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_5
+
+// ---------------------
+// --------------------

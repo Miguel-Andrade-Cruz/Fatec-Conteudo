@@ -1,0 +1,395 @@
+#define EX_1
+
+
+
+#ifdef EX_1
+#include <stdio.h>
+
+const char year_str[5] = "anos";
+const char month_str[6] = "meses";
+const char days_str[5] = "dias";
+
+const int YEAR_DAYS = 365;
+const int MONTH_DAYS[12] = {
+    31, 28, 31,
+    30, 31, 30,
+    31, 31, 30,
+    31, 30, 31
+};
+
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+
+int is_leap_year(int year) {
+    
+    return ( (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 );
+}
+
+
+int get_leap_years_from_date(int day, int month, int year) {
+    
+    int leap_years;
+    if (month <= 2) {
+        year -= 1;
+    }
+    
+    leap_years = year / 4;
+    leap_years -= leap_years / 100;
+    leap_years += leap_years / 400;
+    return leap_years;
+}
+
+
+int get_leap_years_from_days(int days) {
+    
+    int leap_years = (days / 365);
+    
+    leap_years = leap_years / 4;
+    leap_years += leap_years/ 400;
+    leap_years -= leap_years / 100;
+    return leap_years;
+}
+
+
+int calculate_total_days(int day, int month, int year) {
+    
+    int total_days = (year * YEAR_DAYS) + day;
+    
+    for (int i = 0; i < month -1; i++) {
+        total_days += MONTH_DAYS[i];
+    }
+    
+    total_days += get_leap_years_from_date(day, month, year);
+    return total_days;
+}
+
+void show_person_age(int day, int month, int year) {
+    
+    int year_str_bound = 5;
+    if (year == 1) {
+        year_str_bound--;
+    }
+    
+    int month_str_bound = 6;
+    if (month == 1) {
+        month_str_bound -= 2;
+    }
+    
+    int day_str_bound = 5;
+    if (day == 1) {
+        day_str_bound--;
+    }
+    
+    printf("A pessoa tem %d %.*s, %d %.*s e %d %.*s\n", 
+         year, year_str_bound, year_str,
+        month, month_str_bound, month_str,
+        day, day_str_bound, days_str
+    );
+    return;
+}
+
+
+int main() {
+
+    char again = 'n';
+    do {
+        // request user input ------ <
+        int birth_day, birth_month, birth_year;
+        int age_day, age_month, age_year;
+        int now_day, now_month, now_year;
+        
+        printf("Digite a data de nascimento no formato 00/00/0000\n");
+        printf("-->>  ");
+        scanf("%d/%d/%d", &birth_day, &birth_month, &birth_year);
+        clear_buffer();
+        
+        printf("Digite a data de hoje no formato 00/00/0000\n");
+        printf("-->>  ");
+        scanf("%d/%d/%d", &now_day, &now_month, &now_year);
+        clear_buffer();
+        // ------------ >
+        
+        // get differnce in days ------ <
+        int birth_on_days_format = calculate_total_days( birth_day, birth_month, birth_year);
+        int now_on_days_format = calculate_total_days( now_day, now_month, now_year);
+        int age_on_days_format = now_on_days_format - birth_on_days_format;
+        // ------------ >
+        
+        // convert difference to date format ------ <
+        int total_leap_years = get_leap_years_from_days(age_on_days_format);
+        
+        age_on_days_format -= total_leap_years;
+        
+        int year = age_on_days_format / YEAR_DAYS;
+        int remaining_days = age_on_days_format % YEAR_DAYS;
+        
+        int i = 0, month = 0;
+        while (remaining_days > MONTH_DAYS[i]) {
+            remaining_days -= MONTH_DAYS[i];
+            month++; i++;
+        }
+        int day = remaining_days;
+        
+        age_year = year;
+        age_month = month;
+        age_day = ( is_leap_year(year) ) ? day + 1 : day;
+        // ------------ >
+        
+        show_person_age(day, month, year);
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_1
+
+
+// --------------------------------------------------------------
+// --------------------------------------------------------------
+
+
+#ifdef EX_2
+#include <stdio.h>
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+const char DAYS_OF_THE_WEEK[7][8] = {
+    "Domingo",
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado"
+};
+
+const int month_offset[] = {
+    0, 3, 2, 
+    5, 0, 3, 
+    5, 1, 4, 
+    6, 2, 4
+};
+
+const char article[4] = "uma";
+
+int main() {
+    
+    
+    char again = 'n';
+    do {
+        
+        int day, month, year;
+        printf("Insira a data que deseja no formato 00/00/0000  :");
+        scanf("%d/%d/%d", &day, &month, &year);
+        clear_buffer();
+        
+        int v_year = year;
+        
+        char weekday[8];
+        if ( month < 3) {
+            v_year = year - 1;
+        }
+        int leap_years = (v_year / 4) - (v_year / 100) + (v_year / 400);
+        
+        // 'dow' means 'day of week'
+        int dow_index = (year + leap_years + month_offset[month - 1] + day) % 7;
+        
+        
+        for (int i = 0; i < 8; i++) {
+            weekday[i] = DAYS_OF_THE_WEEK[dow_index][i];
+        }
+        
+        int article_limit = 2;
+        if (!(dow_index == 0) && !(dow_index == 6)) {
+            article_limit++;
+        }
+        
+        printf(
+            "O dia %.2d/%.2d/%.4d foi %.*s %s\n",
+            day, month, year, article_limit, article, weekday
+        );
+        
+        // +-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (getchar() != 's');
+    return 0;
+}
+#endif // EX_2
+
+
+// --------------------------------------------------------------
+// --------------------------------------------------------------
+
+
+#ifdef EX_3
+#include <stdio.h>
+void clear_buffer() {
+    
+    while(getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 's';
+    do {
+        
+        // user input ------ <
+        int num1, num2;
+        printf("Insira o primeiro número:  ");
+        scanf("%d", &num1);
+        clear_buffer();
+        
+        printf("Insira o segundo número:  ");
+        scanf("%d", &num2);
+        clear_buffer();
+        // ------------ >
+        
+        // bitwise operations ------ <
+        int bitwise_and = num1 & num2;
+        printf("Expressão: %d AND %d = %d(10) ou %x(16)\n\n",
+            num1, num2, bitwise_and, bitwise_and
+        );
+        
+        int bitwise_or = num1 | num2;
+        printf("Expressão: %d OR %d = %d(10) ou %x(16)\n\n",
+            num1, num2, bitwise_or, bitwise_or
+        );
+        
+        int bitwise_xor = num1 ^ num2;
+        printf("Expressão: %d XOR %d = %d(10) ou %x(16)\n\n",
+            num1, num2, bitwise_xor, bitwise_xor
+        );
+        // ------------ >
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_3
+
+
+// --------------------------------------------------------------
+// --------------------------------------------------------------
+
+
+#ifdef EX_4
+#include <stdio.h>
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    char again = 'n';
+    do {
+        // user input ---------- <
+        float num1, num2;
+        
+        printf("Insira o primeiro número:  ");
+        scanf("%f", &num1);
+        clear_buffer();
+        
+        printf("Insira o segundo número:  ");
+        scanf("%f", &num2);
+        clear_buffer();
+        // ---------- >
+        
+        // arithmetic and show ans ------ <
+        float add_result = num1 + num2;
+        printf("Adição entre %.2f e %.2f = %.2f\n\n", num1, num2, add_result);
+        
+        float sub_result = num1 - num2;
+        printf("Subtração entre %.2f e %.2f = %.2f\n\n", num1, num2, sub_result);
+        
+        float mult_result = num1 * num2;
+        printf("Multiplicação entre %.2f e %.2f = %.2f\n\n", num1, num2, mult_result);
+        
+        float div_result = num1 / num2;
+        printf("Divisão entre %.2f e %.2f = %.2f\n\n", num1, num2, div_result);
+        // ------------ >
+        
+        // +-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+        
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_4
+
+
+// --------------------------------------------------------------
+// --------------------------------------------------------------
+
+
+#ifdef EX_5
+#include <stdio.h>
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        float num1, num2;
+        printf("Digite o primeiro número:  ");
+        scanf("%f", &num1);
+        
+        printf("Digite o segundo número:  ");
+        scanf("%f", &num2);
+        
+        float
+            acc_sum = num1 ,
+            acc_sub = num1 ,
+            acc_mult = num1 ,
+            acc_div = num1
+        ;
+        
+        acc_sum += num2;
+        printf("A soma entre %.2f e %.2f é igual a %.2f\n\n", num1, num2, acc_sum);
+        
+        acc_sub -= num2;
+        printf("A subtração entre %.2f e %.2f é igual a %.2f\n\n", num1, num2, acc_sub);
+        
+        acc_mult *= num2;
+        printf("A multiplicação entre %.2f e %.2f é igual a %.2f\n\n", num1, num2, acc_mult);
+        
+        acc_div /= num2;
+        printf("A divisão entre %.2f e %.2f é igual a %.2f\n\n", num1, num2, acc_div);
+        
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    
+    
+    return 0;
+}
+#endif // EX_5

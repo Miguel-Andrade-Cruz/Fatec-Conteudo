@@ -1,0 +1,305 @@
+// ---------
+#define EX_1
+// ---------
+
+#ifdef EX_1
+#include <stdio.h>
+#define STRING_SIZE 10
+
+char string_one[STRING_SIZE + 1], string_two[STRING_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        // 'ask_for_two_strings' function
+        printf("Insira a primeira string (máximo 10 carcteres):  ");
+        scanf("%s", string_one);
+        clear_buffer();
+        
+        printf("Insira a segunda string (máximo 10 carcteres):  ");
+        scanf("%s", string_two);
+        clear_buffer();
+        // -----------------------------------------
+        
+        
+        // 'string_comparator' function
+        int equal_chars_qtd = 0;
+        for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
+            
+            if (string_one[i_char] == string_two[i_char]) {
+                equal_chars_qtd++;
+            }
+        }
+        int is_equal = equal_chars_qtd == STRING_SIZE;
+        // -----------------------------------------
+        
+        
+        // 'show_comparison_result' function
+        if (is_equal) {
+        printf("As duas strings são iguais\n");
+        } else {
+            printf("Há diferenças entre as strings\n");
+        }
+        // -----------------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_1
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+#ifdef EX_2
+#include <stdio.h>
+
+#define STR_SIZE 7
+
+char str_1[STR_SIZE + 1];
+char str_2[STR_SIZE + 1];
+char str_3[STR_SIZE + 1];
+char str_4[STR_SIZE + 1];
+char str_5[STR_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+
+    char again = 'n';
+    do {
+        
+        int one_through_zero = 1234567890;
+        int TEN = 10, TWENTY = 20, THIRTY = 30, FORTY = 40, FIFTY = 50;
+        
+        // 'ask_strings' function
+        printf("Insira cinco strings, de até 7 caracteres:\n");
+        
+        printf("[ 1 ] ->> ");
+        scanf("%s", str_1);
+        clear_buffer();
+        
+        printf("[ 2 ] ->> ");
+        scanf("%s", str_2);
+        clear_buffer();
+        
+        printf("[ 3 ] ->> ");
+        scanf("%s", str_3);
+        clear_buffer();
+        
+        printf("[ 4 ] ->> ");
+        scanf("%s", str_4);
+        clear_buffer();
+        
+        printf("[ 5 ] ->> ");
+        scanf("%s", str_5);
+        clear_buffer();
+        // --------------------------------------
+        
+        // 'show_formatting' function
+        printf("%14d%8d%8d%8d%8d\n", TEN, TWENTY, THIRTY, FORTY, FIFTY);
+        printf("%12d%d%d%d%d\n",
+            one_through_zero,
+            one_through_zero,
+            one_through_zero,
+            one_through_zero,
+            one_through_zero
+        );
+        
+        printf("%6s%34s\n", str_1, str_5);
+        printf("%16s%15s\n", str_2, str_4);
+        printf("%22s\n", str_3);
+        // --------------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\n\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_2
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+#ifdef EX_3
+#include <stdio.h>
+
+#define STRING_SIZE 10
+char string[STRING_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        // 'ask_for_string' function
+        printf("Insira uma string (máximo 10 caracteres):  ");
+        scanf("%[^\n]s", string);
+        clear_buffer();
+        // ------------------------------
+        
+        printf("A string digitada foi: %s\n", string);
+        
+        // 'to_uppercase_conversion' function
+        for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
+            
+            int is_space = string[i_char] == 0x20;
+            int is_upper = string[i_char] >= 0x41 && string[i_char] <= 0x5a;
+            
+            if (is_space || is_upper) {
+                continue;
+                
+            } else if (string[i_char] == '\0') {
+                i_char = STRING_SIZE;
+                
+            } else {
+                
+                string[i_char] -= 0x20;
+            }
+        }
+        // ------------------------------
+        
+        // 'show_string' function
+        printf("Assim ficou a string em caixa alta: %s\n", string);
+        // ------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("\n\nDeseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_3
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+#ifdef EX_4
+#include <stdio.h>
+#define STRING_SIZE 10
+
+char string[STRING_SIZE + 1];
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    char again = 'n';
+    do {
+        
+        // 'ask_for_string' function
+        printf("Insira uma string (máximo 10 caracteres):  ");
+        scanf("%[^\n]s", string);
+        clear_buffer();
+        // ---------------------------------
+        
+        printf("A string digitada foi: %s\n", string);
+        
+        // 'to_lowercase_conversion' function
+        for (int i_char = 0; i_char < STRING_SIZE; i_char++) {
+            
+            int is_space = string[i_char] == 0x20;
+            int is_lower = string[i_char] >= 0x61 & string[i_char] <= 0x7a;
+            
+            if (is_space || is_lower) {
+                continue;
+                
+            } else if (string[i_char] == '\0') {
+                i_char = STRING_SIZE;
+                
+            } else {
+                
+                string[i_char] += 0x20;
+            }
+        }
+        // ---------------------------------
+        
+        // 'show_string' function
+        printf("Assim ficou a string em caixa baixa: %s\n", string);
+        // ---------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_4
+
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+
+#ifdef EX_5
+#include <stdio.h>
+
+const int STR_SIZE = 40;
+
+void clear_buffer() {
+    
+    while (getchar() != '\n');
+    return;
+}
+
+int main() {
+    
+    int size;
+    char str[STR_SIZE + 1];
+    
+    char again = 'n';
+    do {
+        
+        // 'ask_for_string' function
+        printf("Digite um texto (tamanho máx. 40 caracteres):  ");
+        scanf("%s", str);
+        clear_buffer();
+        // ------------------------------
+        
+        // 'size' function
+        int i = 0;
+        while (str[i] != '\0') i++;
+        size = i;
+        // ------------------------------
+        
+        // 'show_string_and_size' function
+        printf("String: %s\ntamanho: %d\n", str, size);
+        // ------------------------------
+        
+        // +-+-+-+-+-+-+-+-+-+
+        printf("Deseja executar novamente? ( s / n )  ");
+        scanf("%c", &again);
+        clear_buffer();
+    } while (again == 's');
+    return 0;
+}
+#endif // EX_5
