@@ -1,3 +1,5 @@
 execs
 banco_dados.txt
 txts
+*_exe
+*.dat
