@@ -1,47 +1,21 @@
 # Calid: Validação de inputs sem preocupação
 
-## Como funciona?
+## Idealização
 
-Calid possui três componentes principais:
+Desenvolver uma biblioteca em C capaz de receber um dado e validá-lo. A biblioteca deverá se capaz de pedir input ao usuário, validar e, se necessário, pedir novamente, até receber o valor certo, além de poder validar um vários valores com a mesma seleção de filtros.
 
-- `Inputer`:
-  Estrutura responsável por encapsular os metadados do input
-    - Mensagem de exibição;
-    - Tipo de dado a ser inserido.
 
-- `Validator`:
-  Estrutura simuladora de uma *função parcial
-  > *Funções parciais são aquelas que implementam funcionalidade de uma função mãe,
-  com um ou mais valores já estabelecidos por padrão. Análogo a seguir uma receita de
- bolo de uma mistura pré feita.
+## Tipos de filtros
 
-- `pull`:
-  Quem de fato pede input do usuário e aplica os Validators conforme informações do inputer
-  até todos os requisitos serem satisfeitos.
-  
-  
-  
-## API (Interface de utilização):
+- igual a
+- maior que | menor que
+- lista pré-selecionada (exclusão ou inclusão)
 
-1. Declare uma variável do tipo `Inputer`, passando uma mensagem e um *tipo:
-`Inputer preco_banana = {.msg = "Insira o preço da banana:\n, .type = T_FLOAT}; `
 
-> * Siga a tabela para inserir o tipo certo de input:
-> | Tipo de dado | Enumerador |
-> |--|--|
-> | número inteiro | `T_INT` |
-> | número decimal (real) | `T_FLOAT` |
-> | caractere único | `T_CHAR` |
+# Fluxo de utilização
 
-2. Declare ponteiros atribuindo as validações desejadas:
-`Validator *maior_que_1_real = greater_than(1);`
-
-3. Declare uma array contendo todas as validações que deseja:
-`Validator *checagens[] = {maior_que_1_real};`
-
-4.Calcule a quantidade de validações e salve em uma variável:
-`int quantidade_validacoes = sizeof(checagens) / sizeof(checagens[0]);`
-
-4. Chame a função `pull` passando a referência para seu `Inputer`,
-a lista de `Validators` e o tamanho do array calculado:
-`pull(&preco_banana, checagens, quantidade_validacoes);`
+1. Definir variável que receberá o valor validado
+2. Definir pergunta ao usuário e mensagem de erro
+3. Definir conjunto de filtros a serem aplicados
+4. Chamar função para aplicar conectar filtros a sua variável
+4. Chamar função para executar fluxo
